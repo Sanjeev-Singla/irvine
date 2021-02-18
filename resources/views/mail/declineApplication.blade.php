@@ -1,0 +1,1 @@
+<p>Your application is decline by owner</p>

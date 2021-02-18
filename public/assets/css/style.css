@@ -1,0 +1,1115 @@
+/**
+* Template Name: Mamba - v2.5.0
+* Template URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+*/
+
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #444;
+}
+
+a {
+  color: #428bca;
+}
+
+a:hover {
+  color: #9eccf4;
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6, .font-primary {
+  font-family: "Raleway", sans-serif;
+}
+label {
+    margin-bottom: 0;
+}
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+  position: fixed;
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  right: 15px;
+  bottom: 15px;
+  background: #428bca;
+  color: #fff;
+  transition: display 0.5s ease-in-out;
+  z-index: 99999;
+}
+
+.back-to-top i {
+  font-size: 24px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+}
+
+.back-to-top:hover {
+  color: #fff;
+  background: #629fd3;
+  transition: background 0.2s ease-in-out;
+}
+
+/*--------------------------------------------------------------
+# Top Bar
+--------------------------------------------------------------*/
+#topbar {
+    background: #000080;    /*0089ff; */
+    padding: 10px 0;
+    border-bottom: 4px solid #fff;
+    font-size: 14px;
+}
+.header-scrolled{
+    margin-top: 0px;
+    background: #fff!important;
+    border-bottom: 3px solid #0d3865!important; 
+ }
+
+#topbar .contact-info a {
+  line-height: 1;
+  color: #fff;
+  transition: 0.3s;
+}
+
+#topbar .contact-info a:hover {
+  color: #428bca;
+}
+
+#topbar .contact-info i {
+  color: #fff;
+  padding: 4px;
+}
+
+#topbar .contact-info .icofont-phone {
+  padding-left: 20px;
+  margin-left: 10px;
+}
+
+#topbar .social-links a {
+  color: #fff;
+  padding: 4px 12px;
+  display: inline-block;
+  line-height: 1px;
+  transition: 0.3s;
+}
+
+#topbar .social-links a:hover {
+  color: #428bca;
+}
+#topbar .float-left{
+    color: #fff;
+}
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+    height: 90px!important;
+    transition: all 0.5s;
+    padding: 0px 0!important;
+    background:#d5d5d5!important;
+    z-index: 999;
+
+}
+div#header-sticky-wrapper{
+
+}
+#header.header-scrolled {
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+#header .logo h1 {
+  font-size: 28px;
+  margin: 0;
+  padding: 10px 0;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+#header .logo h1 a, #header .logo h1 a:hover {
+  color: #1c5c93;
+  text-decoration: none;
+}
+
+#header .logo img {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: 330px;
+}
+
+section{
+  padding:60px 10px;
+}
+#team {
+    padding-top: 0px;
+}
+/* Style the tab */
+.tab {
+     overflow: hidden;
+    border: none;
+    background-color: #f1f1f1;
+    text-align: center;
+    background: transparent;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    float: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    display: inline-block;
+    background: #5e5e5e;
+    color: #fff;
+    border-radius: 44px;
+    padding: 12px 50px;
+    margin: 5px 10px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  box-shadow:0px 7px 15px -10px rgb(0 0 0 / 38%);
+}
+.logo {    text-align: center;
+    padding: 0px 0px;
+}
+
+.box-icon {
+    position: absolute;
+    right: 0;
+    left: 56%;
+    top: -3px;
+    font-size: 60px;
+    margin: auto;
+    text-align: center;
+}
+.box-icon a {
+    color: #60d937;
+}
+#header-sticky-wrapper {
+     background: #d5d5d5;;
+}
+.tabcontent {
+    background: #d5d5d5;
+    border-radius: 40px;
+    padding: 20px 25px;
+  }
+.tabcontent h2 {
+    text-align: center;
+}
+.nt {
+    margin: 5px 14px;
+    display: inline-table;
+    width: 100%;
+    border-radius: 13px;
+    background: #fff;
+    border: none; 
+  }
+.tabcontent ul {
+    padding: 10px 8px;
+    width: 100%;
+    background: #fff;
+    border-radius: 15px;
+    list-style: none;
+    margin: 0px 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0px 7px 15px -10px #000;
+} 
+.tabcontent ul li {
+    display: inline-block;
+    width: 100%;
+    max-width: 140px;
+      vertical-align: top;
+    padding-left:10px;
+}
+.tabcontent ul li img{
+    width: 100%;
+    max-width: 125px;
+  }
+.tabcontent ul li:nth-child(1){
+ max-width: 100px;
+ padding-left:2px;
+ }
+ .tabcontent ul li:nth-child(2){
+ max-width: 190px;
+ }
+ .section-left {
+    width: 50%;
+    float: left;
+      margin: 15px 0px;
+    position:relative;
+}
+ .section-left i{
+position: absolute;
+    right: 170px;
+    left: 0;
+    text-align: center;
+    top: 12px;
+    color: #a8a8a8;
+  }
+.section-right {
+    float: right;
+    width: 50%;
+    margin: 15px 0px;
+    text-align: right;
+  position:relative;
+}
+
+.section-right .icon-box {
+    position: absolute;
+    right: 20px;
+    top: -75px;
+    font-size: 30px;
+}
+.section-right .icon-box span{
+    margin: 0px 15px;
+}
+.section-right .icon-box span a {
+    color: #f37121;
+}
+.section-right .icon-box a {
+    color: #60d937;
+}
+
+/************ ****************/
+
+
+.agent-profile {
+    padding: 50px 0;
+}
+.agent-profile-row {
+    background: #d5d5d5;
+    border-radius: 40px;
+    padding: 20px 25px;
+    box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 38%);
+    display: flex;
+    width: 70%;
+    margin: 0 auto 30px;
+}
+.agent-profile-row ul {
+    width: 100%;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+.agent-profile-row ul li {
+    width: 100%;
+    float: left;
+    list-style: none;
+    margin: 10px 0;
+  align-items: center;
+    display: flex;
+}
+.agent-profile-row ul li label {
+    width: 120px;
+    float: left;
+    text-align: right;
+    padding-right: 10px;
+}
+.agent-profile-row ul li input[type="text"],
+.agent-profile-row ul li input[type="email"],
+.agent-profile-row ul li input[type="tel"],
+.agent-profile-row ul li input[type="password"],
+.agent-profile-row ul li input[type="number"],
+.agent-profile-row ul li select {
+    border: none;
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 48%);
+    padding: 0 10px;
+    outline: none;
+}
+.agent-profile-row1 .agent-profile-left {
+    flex-basis: 50%;
+}
+.agent-profile-row1 .agent-profile-right {
+    flex-basis: 50%;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.agent-profile-row2 ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+.agent-profile-row2 ul li {
+    flex-basis: 50%;
+}
+.agent-profile-row3 {
+    min-height: 200px;
+}
+
+.agent-profile-row3 .agent-profile-left {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+.agent-profile-row3 .agent-profile-left .sign-btn {
+    align-self: center;
+    background-color: #61d836;
+    padding: 20px 30px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 100%;
+    margin-top: 30px;
+    box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 34%);
+  transition: 0.5s all;
+}
+.agent-profile-row3 .agent-profile-left .sign-btn:hover {
+    background-color: #f37121;
+}
+.login-row .agent-profile-left {
+    text-align: center;
+}
+.login-row .agent-profile-left ul li {
+    justify-content: center;
+}
+.login-row .agent-profile-left ul li input[type="email"],
+.login-row .agent-profile-left ul li input[type="password"]{
+    border: 1px solid #000;
+    border-radius: 50px;
+    padding: 0 20px;
+    background-color: transparent;
+}
+
+.login-row .agent-profile-left ul li input[type="submit"] {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    display: inline-block;
+    background: #5e5e5e;
+    color: #fff;
+    border-radius: 44px;
+    padding: 12px 50px;
+    box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 48%);
+}
+.login-row .agent-profile-left ul li input[type="submit"]:hover {
+    background: #f37121;
+}
+.agent-profile-right img {
+    width: 100%;
+    max-width: 130px;
+}
+.tabcontent input[type="text"],
+.tabcontent select {
+    border: none;
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 38%);
+    padding: 0 10px;
+  outline:none;
+}
+.heading {
+  width: 100%;
+  float: left;
+  text-align: center;
+}
+.select-option {
+  width: 62%;
+  margin-left: 25px;
+}
+.tenbox-app .agent-profile-row {
+    flex-wrap: wrap;
+}
+.tenbox {
+  flex: 1;
+  /* max-width: 36%; */
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.tenbox.tenbox3 {
+  max-width: 50%;
+  flex-basis: 50%;
+}
+.tenbox.tenbox4 {
+  max-width: 50%;
+}
+.login-page.tenbox-app {
+  text-align: center;
+}
+.agent-profile-row1.agent-profile-row11 {
+  max-width: 70%;
+  margin: 0 auto;
+  background: #d5d5d5;
+  border-radius: 40px;
+  padding: 20px 25px;
+  box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 38%);
+  display: inline-block;
+  padding-top: 55px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+.tenbox11 {
+  width: 50%;
+  float: left;
+}
+.see-text{
+      text-align: center;
+    margin: 15px 0px;
+}
+li.msg-icon img {
+    width: 50px!important;
+}
+.msg-icon a {
+    align-self: center;
+    background-color: #ed220d;
+    padding: 20px 30px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 100%;
+    margin-top: 30px;
+    box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 34%);
+}
+.rec2 a{
+   background-color: #f27200!important;
+}
+.rec3 a{
+   background-color: #1db100!important;
+}
+.agent-profile-row1 ul li input[type="date"],
+.agent-profile-row1 ul li input[type="text"], .agent-profile-row1 ul li input[type="email"], .agent-profile-row1 ul li input[type="tel"], .agent-profile-row1 ul li input[type="password"], .agent-profile-row1 ul li input[type="number"], .agent-profile-row1 ul li select {
+    border: none;
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 48%);
+    padding: 0 10px;
+    outline: none;
+}
+.agent-profile-row1 ul li input[type="date"]  {
+    text-transform: uppercase;
+}
+.agent-profile-row1 .imgtenbox12 input[type="file"] {
+  padding: 10px;
+  max-width: 200px;
+}
+.agent-profile-row1 ul li {
+  width: 100%;
+  float: left;
+  list-style: none;
+  margin: 10px 0;
+  align-items: center;
+  display: flex;
+}
+.agent-profile-row1 ul li label {
+  /*width: 120px;*/
+  float: left;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.tenbox11.tenbox12 img {
+  max-width: 63%;
+  float: right;
+  margin-top: 7px;
+}
+.tenbox11.imgtenbox12 {
+  padding: 100px;
+  padding-top: 23px;
+}
+.tenbox11.tenbox13 {
+  padding-right: 37px;
+}
+.tenbox11.tenbox14 {
+  border-left: 2px solid #b0b0b0;
+}
+.tenbox11.tenbox15 {
+  width: 100%;
+  padding: 10px;
+}
+.tenbox11.tenbox15 button {
+  background-color: #60d937;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 50px;
+  color: #fff;
+  font-size: 18px;
+  box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 48%);
+  transition:0.5s;
+}
+.tenbox11.tenbox15 button:hover {
+  background-color: #f37121;
+}
+.login-page.tenbox-app {
+  position: relative;
+}
+.myheading {
+  width: 100%;
+  max-width: 58%;
+  margin: 0 auto;
+  background-color: #d5d5d5;
+  display: inline-flex;
+  border-radius: 54px;
+  padding: 21px;
+  box-shadow: 0px 7px 15px -10px #000;
+  position: absolute;
+  top: 0;
+}
+.login-page2.tenbox-app2 {
+  width: 100%;
+  float: left;
+  text-align: center;
+}
+.newagent-profile-row1.agent-profile-row1 {
+  border-radius: 40px;
+  padding: 20px 25px;
+  margin-bottom: 40px;
+  align-items: center;
+  display: flex;
+}
+.newagent-profile-row1.agent-profile-row1 .tenbox11.imgtenbox12 {
+  padding: 30px;
+}
+.newagent-profile-row1.agent-profile-row1 .tenbox11.imgtenbox12 img {
+  max-width: 150px;
+}
+.agent-profile-row1 ul li label {
+  margin-bottom: 0;
+}
+.newagent-profile-row1.agent-profile-row1 {
+  position: relative;
+}
+.editbtn.tenboxeditbtn {
+  width: 100%;
+  float: left;
+  position: absolute;
+  top: 15px;
+  right: 16px;
+  text-align: right;
+}
+.editbtn.tenboxeditbtn button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 16px;
+  display: inline-block;
+  background: #5e5e5e;
+  color: #fff;
+  border-radius: 44px;
+  padding: 12px 25px;
+  box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 48%);
+}
+.newagent-profile-row1 .tenbox11.tenbox12 {
+  text-align: right;
+}
+
+/* Registration form */
+
+.login-page {
+  text-align: center;
+}
+#login-box {
+  position: relative;
+  margin: 0 auto;
+  background: #d5d5d5;
+  box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 38%);
+  border-radius: 50px;
+  width: 70%;
+  display: inline-block;
+  padding:20px 25px;
+}
+#login-box h1 {
+    margin: 15px 0px;
+    font-weight: 300;
+    font-size: 28px;
+}
+#login-box input[type="text"],
+#login-box input[type="password"] {
+    border: none;
+    height: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 48%);
+    padding: 0 10px;
+    outline: none;
+    font-size: 15px;
+    transition: 0.2s ease;
+  margin: 10px 0;
+}
+
+#login-box input[type="text"]:focus,
+#login-box input[type="password"]:focus {
+  border-bottom: 2px solid #16a085;
+  color: #16a085;
+  transition: 0.2s ease;
+}
+
+#login-box input[type="submit"] {
+  border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    display: inline-block;
+    background: #5e5e5e;
+    color: #fff;
+    border-radius: 44px;
+    padding: 12px 50px;
+    box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 48%);
+}
+#login-box input[type="submit"]:hover {
+    background: #f37121;
+}
+#login-box input[type="submit"]:active {
+  opacity: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: 0.1s ease;
+}
+
+#login-box .or {
+  position: absolute;
+  top: 180px;
+  left: 280px;
+  width: 40px;
+  height: 40px;
+  background: #DDD;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  line-height: 40px;
+  text-align: center;
+}
+#login-box .left {
+      padding: 20px 30px;
+    width: 300px;
+    float: left;
+}
+#login-box .right {
+    padding: 20px 30px;
+    width: 300px;
+    float: left;
+}
+
+#login-box .right .loginwith {
+  display: block;
+  margin-bottom: 20px;
+  font-size: 22px;
+  color: #010101;
+  text-align: center;
+  line-height: 26px;
+}
+#login-box .right #validid-file {
+    display: block;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 4px;
+    width: 220px;
+    height: 32px;
+    border: none;
+    border-bottom: 1px solid #AAA;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+#login-box button.social-signin {
+  margin-bottom: 20px;
+  width: 220px;
+  height: 36px;
+  border: none;
+  border-radius: 2px;
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+#login-box button.social-signin:hover,
+#login-box button.social-signin:focus {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transition: 0.2s ease;
+}
+
+#login-box button.social-signin:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: 0.2s ease;
+}
+
+#login-box button.social-signin.facebook {
+  background: #32508E;
+}
+
+button.social-signin.twitter {
+  background: #55ACEE;
+}
+
+#login-box button.social-signin.google {
+  background: #DD4B39;
+}
+/* end Registration form */
+
+.threebtns {
+    display: inline-block;
+    margin: 15px 0px!important;
+}
+.threebtns li {
+    display: inline-block!important;
+    width: 100%;
+    max-width: 33.33%;
+    margin: 15px 0px;
+}
+
+.threebtns li a {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    display: inline-block;
+    background: #5e5e5e;
+    color: #fff;
+    border-radius: 44px;
+    padding: 10px 16px;
+    box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 48%);
+  transition:0.5s;
+
+}
+.threebtns li a:hover {
+    background: #f37121;
+
+}
+.ntpsection{
+   /* width: 60%; */
+}
+
+
+/***** paymennt history css *******************/
+
+
+.mytbl-view .modal2,
+.mytbl-view .modal3  {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0; 
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgb(0 0 0 / 0%) /* Black w/ opacity */
+}
+
+/* The Modal (background) */
+.mytbl-view .modal1{
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgb(0 0 0 / 0%) /* Black w/ opacity */
+  
+}
+
+/* Modal Content */
+.mytbl-view .modal-content,
+.mytbl-view2 .modal-content,
+.mytbl-view3 .modal-content {
+    background-color: #373737d1;
+    margin: auto;
+    padding: 20px;
+    width: 80%;
+    border-radius: 50px;
+}
+
+/* The Close Button */
+.mytbl-view .close,
+.mytbl-view .close2,
+.mytbl-view .close3 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.mytbl-view .close:hover,
+.mytbl-view .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mytbl-view .modal-content h3,
+.mytbl-view2 .modal-content h3 {
+    text-align: center;
+    color: #fff;
+}
+#payment-history-tbl {
+    border-collapse: collapse;
+    margin: auto;
+    color: #fff;
+    border: 0px solid;
+    width: 100%;
+    height: 350px;
+    position: relative;
+    max-width: 650px;
+    display: block;
+    text-align: center;
+    overflow-y: scroll;
+}
+#payment-history-tbl th,
+#payment-history-tbl td {
+  border: 0px solid #c6c7cc;
+  padding: 10px 15px;
+}
+
+#payment-history-tbl .tb-left{
+    border-right: 1px solid #fff;
+      }
+#payment-history-tbl tbody {
+       position: absolute;
+    left: 225px;
+    width: 100%;
+    margin: 0;
+    right: 0;
+    text-align: center;
+    max-width: 360px;
+    display: table-cell;
+} 
+  
+.done-btn{
+    background: transparent;
+    border: none;
+    display: block;
+    width: 100%;
+    margin: 20px 0px;
+} 
+.done-btn a {
+     float: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    display: inline-block;
+    background: #7e7e7e;
+    color: #fff;
+    border-radius: 44px;
+    padding: 12px 50px;
+    margin: 5px 10px;
+}
+
+.see-all-table {
+    box-shadow: 0px 7px 15px -10px rgb(0 0 0 / 38%);
+}
+.see-all-table thead tr {
+    background-color: #5e5e5e;
+}
+.see-all-table thead tr th {
+    color: #fff;
+    border-bottom: none;
+}
+.see-all-table tbody tr {
+    background-color: #d5d5d5;
+}
+.see-all-table tbody tr th, .see-all-table tbody tr td {
+    border-top: 1px solid #ccc;
+}
+
+
+
+@media screen and (max-width:991px) {
+.agent-profile-row {
+    width: 100%;
+}
+#login-box {
+    width: 100%;
+}
+.agent-profile-row1.agent-profile-row11 {
+    max-width: 100%;
+}
+.myheading {
+    max-width: 100%;
+    margin: 0 auto -50px;
+    position: relative;
+}
+.tabcontent ul {
+    overflow: scroll;
+}
+}
+
+
+@media screen and (max-width:767px) {
+.agent-profile-row {
+    flex-wrap: wrap;
+}
+.agent-profile-row1 .agent-profile-left {
+    flex-basis: 100%;
+}
+
+.agent-profile-row1 .agent-profile-right {
+    flex-basis: 100%;
+    margin-top: 30px;
+}
+.agent-profile-row ul li {
+    align-items: flex-start;
+    flex-direction: column;
+}
+.agent-profile-row ul li label {
+    width: 100%;
+    text-align: left;
+    padding-right: 0px;
+    margin-bottom: 5px !important;
+}
+.agent-profile-row ul li input[type="date"], .agent-profile-row ul li input[type="text"], .agent-profile-row ul li input[type="email"], .agent-profile-row ul li input[type="tel"], .agent-profile-row ul li input[type="password"], .agent-profile-row ul li input[type="number"], .agent-profile-row ul li select {
+    width: 100%;
+}
+.agent-profile-row2 ul li {
+    flex-basis: 100%;
+}
+#login-box .left {
+    padding: 0;
+    width: 100%;
+}
+#login-box input[type="text"], #login-box input[type="password"] {
+    width: 100%;
+}
+#login-box .right {
+    padding: 0;
+    width: 100%;
+}
+#login-box input[type="submit"] {
+    margin-top: 20px;
+}
+.tenbox11 {
+    width: 100%;
+}
+.tenbox11.imgtenbox12 {
+    padding: 40px;
+    padding-top: 40px;
+}
+.agent-profile-row1 ul li input[type="date"], .agent-profile-row1 ul li input[type="text"], .agent-profile-row1 ul li input[type="email"], .agent-profile-row1 ul li input[type="tel"], .agent-profile-row1 ul li input[type="password"], .agent-profile-row1 ul li input[type="number"], .agent-profile-row1 ul li select {
+    width: 100%;
+}
+.agent-profile-row1 ul li label {
+    width: 100%;
+    text-align: left;
+    padding-right: 0px;
+}
+.agent-profile-row1 ul li {
+    width: 100%;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+.tenbox11 ul li select {
+    margin-left: 0;
+}
+.tenbox11.tenbox13 {
+    padding-right: 0;
+}
+.tenbox11.tenbox14 {
+    border-left: none;
+}
+.newagent-profile-row1.agent-profile-row1 {
+    flex-wrap: wrap;
+}
+.tenbox11  ul {
+    width: 100%;
+    float: left;
+    padding: 0;
+}
+.tenbox11 ul li h3 {
+    text-align: center;
+}
+.tenbox11 ul li h3 br {
+    display: none;
+}
+.agent-profile-row .threebtns li {
+    max-width: 100%;
+}
+.section-right {
+    width: 100%;
+    padding:10px;
+}
+.tabcontent input[type="text"], .tabcontent select {
+    width: 100%;
+}
+.tabcontent select:not(:last-child) {
+    margin-bottom: 15px;
+}
+.section-left{
+  margin: 15px 20px!important;
+}
+}
+
+.fa-search:before{
+  padding:10px; 
+}
+@media(max-width: 640px){
+ #payment-history-tbl tbody{
+  left: 18px!important;
+} 
+.pay-amount span{
+  width:100%!important;
+}
+}
+
+@media(max-width: 640px){
+  .box-icon {
+    position: absolute;
+    right: 0;
+    left: 80%!important;
+    top: 4px!important;
+    font-size: 48px;
+    margin: auto;
+    text-align: center;
+}
+.agent-profile-row1 ul li label,.agent-profile-row ul li label{
+  text-align: center!important;
+}
+#header .logo img {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    margin-left: -30px!important;
+}
+.tenant{
+  padding:20px!important;
+}
+.login-row .agent-profile-left ul li input[type="submit"]{
+  margin-top: 10px!important;
+  width:100%!important;
+}
+}

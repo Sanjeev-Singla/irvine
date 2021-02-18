@@ -1,0 +1,556 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+body {
+  font-family: "Raleway", sans-serif;
+}
+.custom-model-main-units,
+.custom-model-main-tenants,
+.custom-model-main-new-application {
+  text-align: center;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.15s linear, z-index 0.15;
+  -o-transition: opacity 0.15s linear, z-index 0.15;
+  transition: opacity 0.15s linear, z-index 0.15;
+  z-index: -1;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.model-open {
+  z-index: 99999;
+  opacity: 1;
+  overflow: hidden;
+}
+.custom-model-inner {
+  -webkit-transform: translate(0, -25%);
+  -ms-transform: translate(0, -25%);
+  transform: translate(0, -25%);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  -o-transition: -o-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  -o-transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  display: inline-block;
+  vertical-align: middle;
+  width: 600px;
+  margin: 30px auto;
+  max-width: 97%;
+}
+.custom-model-wrap::-webkit-scrollbar {
+  display: none;
+}
+.custom-model-wrap {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.custom-model-wrap {
+  display: block;
+  width: 100%;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: 0;
+  text-align: left;
+  padding: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  max-height: calc(100vh - 70px);
+  overflow-y: scroll;
+}
+.custom-model-main-units .pop-up-content-wrap,
+.custom-model-main-tenants .pop-up-content-wrap {
+  background: lavender;
+  border-radius: 10px;
+}
+.model-open .custom-model-inner {
+  -webkit-transform: translate(0, 0);
+  -ms-transform: translate(0, 0);
+  transform: translate(0, 0);
+  position: relative;
+  z-index: 999;
+}
+.model-open .bg-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+}
+.bg-overlay {
+  background: rgba(0, 0, 0, 0);
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  -webkit-transition: background 0.15s linear;
+  -o-transition: background 0.15s linear;
+  transition: background 0.15s linear;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.close-btn {
+  position: absolute;
+  right: 45px;
+  top: 45px;
+  cursor: pointer;
+  z-index: 99;
+  color: #fff;
+}
+
+.form-wrap .form-group input {
+  background: #fff;
+  color: #000;
+  font-weight: 600;
+}
+.form-wrap .form-group label {
+  font-weight: 600;
+}
+.close-btn i {
+  border: 1px solid lightgrey;
+  color: tomato;
+  background-color: ghostwhite;
+  padding: 6px 9px;
+  border-radius: 50px;
+  font-size: 18px;
+  box-shadow: 0px 0px 25px -5px rgba(0, 0, 0, 0.7);
+}
+.form-wrap {
+  color: #000;
+  padding: 25px 30px;
+}
+
+.units-modal-op,
+.tenants-modal-op {
+  cursor: pointer;
+}
+.form-wrap .see-history {
+  margin: 30px auto;
+  font-weight: 600;
+  text-align: center;
+}
+.sub-buttons-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sub-buttons-group .closebut {
+  background: grey;
+  color: #fff;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  padding: 10px 25px;
+  min-width: 120px;
+  margin: 0 5px;
+  font-weight: 600;
+}
+.sub-buttons-group .edit-button {
+  background: #daa520;
+  color: #fff;
+  border: 0;
+  outline: 0;
+  border-radius: 5px;
+  padding: 10px 25px;
+  min-width: 120px;
+  margin: 0 5px;
+  font-weight: 600;
+}
+.form-wrap form label {
+  font-weight: 600;
+}
+.img-company-name {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0px auto 40px auto;
+}
+.img-company-name img {
+  width: 150px;
+  height: 120px;
+  margin-right: 15px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 15px -5px rgba(0, 0, 0, 0.6);
+}
+.img-company-name p {
+  margin: 0;
+  color: #000;
+  font-weight: 600;
+}
+.img-company-name .img-company-nameR h5 {
+  margin: 0;
+  font-weight: 700;
+  color: #000;
+}
+.img-company-name .img-company-nameL {
+  margin-right: 15px;
+}
+.custom-model-main-new-application .application-heading {
+  text-align: center;
+}
+.custom-model-main-new-application .application-heading h2 {
+  font-weight: 700;
+  color: #fff;
+}
+.custom-model-main-new-application .application-heading p {
+  font-weight: 500;
+  color: #fff;
+  margin: 15px auto 25px auto;
+}
+.custom-model-main-new-application .application-email-box {
+  margin: 30px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.custom-model-main-new-application .application-email-box .form-group input {
+  padding: 10px;
+  border: 0;
+  border-radius: 20px 0px 0px 20px;
+  min-width: 220px;
+  max-width: 220px;
+  outline: 0;
+  height: 44px;
+}
+.custom-model-main-new-application .application-email-box button {
+  background: #daa520;
+  padding: 10px 25px;
+  border-radius: 20px 20px 20px 20px;
+  color: #fff;
+  font-weight: 600;
+  border: 0;
+  position: relative;
+  left: -20px;
+  min-width: 120px;
+  outline: 0;
+  margin: 18px 0px 0px 0px;
+}
+.custom-model-main-new-application .application-select-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px auto;
+}
+
+.custom-model-main-new-application .application-select-box .form-group select {
+  width: 180px !important;
+  margin-right: 10px;
+  border: 0;
+  padding: 10px;
+  border-radius: 5px;
+  outline: 0;
+}
+.custom-model-main-new-application .application-select-box .form-group label {
+  margin-bottom: 10px;
+  color: #fff;
+}
+.custom-model-main-new-application .application-email-box .form-group label {
+  margin-bottom: 10px;
+  color: #fff;
+}
+.custom-model-main-new-application .application-select-box button {
+  background: #44d43b;
+  padding: 10px 25px;
+  border-radius: 20px 20px 20px 20px;
+  color: #fff;
+  font-weight: 600;
+  border: 0;
+  min-width: 120px;
+  outline: 0;
+  margin: 18px 0px 0px 0px;
+}
+@media screen and (min-width: 800px) {
+  .custom-model-main-units:before {
+    content: "";
+    display: inline-block;
+    height: auto;
+    vertical-align: middle;
+    margin-right: -0px;
+    height: 100%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .custom-model-inner {
+    margin-top: 45px;
+  }
+  .form-wrap {
+    color: #fff;
+    padding: 20px 10px;
+  }
+}
+
+
+body {
+    font-family: "Raleway", sans-serif;
+}
+
+.pay-amount label {
+    width: 260px !important;
+    font-weight: 600;
+}
+
+.pay-amount span {
+    width: 200px;
+}
+
+.agent-profile-row1.agent-profile-row18 {
+    border-radius: 40px !important;
+    margin: 15px 0;
+}
+
+.tenbox13 h4,
+.tenbox14 h4 {
+    font-size: 28px;
+    padding: 5px 45px;
+    line-height: 32px;
+}
+
+.custom-model-main-request,
+.custom-model-main-maintenace {
+    text-align: center;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+    opacity: 0;
+    -webkit-transition: opacity 0.15s linear, z-index 0.15;
+    -o-transition: opacity 0.15s linear, z-index 0.15;
+    transition: opacity 0.15s linear, z-index 0.15;
+    z-index: -1;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.model-open {
+    z-index: 99999;
+    opacity: 1;
+    overflow: hidden;
+}
+
+.custom-model-inner {
+    -webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
+    transform: translate(0, -25%);
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    -o-transition: -o-transform 0.3s ease-out;
+    transition: -webkit-transform 0.3s ease-out;
+    -o-transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+    display: inline-block;
+    vertical-align: middle;
+    width: 600px;
+    margin: 30px auto;
+    max-width: 97%;
+}
+
+.custom-model-wrap::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.custom-model-wrap {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.custom-model-wrap {
+    display: block;
+    width: 100%;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 6px;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    background-clip: padding-box;
+    outline: 0;
+    text-align: left;
+    padding: 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    max-height: calc(100vh - 70px);
+    overflow-y: scroll;
+}
+
+.model-open .custom-model-inner {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+    position: relative;
+    z-index: 999;
+}
+
+.model-open .bg-overlay {
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+}
+
+.bg-overlay {
+    background: rgba(0, 0, 0, 0);
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 0;
+    -webkit-transition: background 0.15s linear;
+    -o-transition: background 0.15s linear;
+    transition: background 0.15s linear;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.close-btn {
+    position: absolute;
+    right: 15px;
+    top: 20px;
+    cursor: pointer;
+    z-index: 99;
+    color: #fff;
+}
+
+.submit {
+    text-align: center;
+}
+
+.submit button {
+    background: #44d43b;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: #fff;
+    min-width: 120px;
+    margin: 20px 10px;
+    font-weight: 600;
+}
+
+.submit .edit-button {
+    background: #DAA520;
+}
+
+.close-btn i {
+    color: tomato;
+    background-color: ghostwhite;
+    padding: 6px 9px;
+    border-radius: 50px;
+    font-size: 18px;
+    box-shadow: 0px 0px 25px -5px rgba(0, 0, 0, 0.7);
+}
+
+.form-heading {
+    text-align: center;
+}
+
+.form-heading p {
+    max-width: 80%;
+    margin: 0px auto 10px auto;
+}
+
+.form-wrap {
+    color: #fff;
+    padding: 25px 30px;
+}
+
+.form-heading h4 {
+    margin: 15px auto;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 25px;
+}
+
+.multi-date {
+    display: flex;
+    align-items: center;
+}
+
+.multi-date i {
+    color: #44d43b;
+    background-color: ghostwhite;
+    padding: 10px 11px;
+    border-radius: 50px;
+    font-size: 18px;
+    box-shadow: 0px 0px 25px -5px rgba(0, 0, 0, 0.7);
+    margin-left: 7px;
+    cursor: pointer;
+}
+
+.status-dropdown {
+    text-align: center;
+    margin: 20px auto;
+}
+
+.status-dropdown select {
+    min-width: 150px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+}
+
+.form-wrap form label {
+    font-weight: 600;
+}
+
+@media screen and (min-width: 800px) {
+    .custom-model-main-request:before {
+        content: "";
+        display: inline-block;
+        height: auto;
+        vertical-align: middle;
+        margin-right: -0px;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .custom-model-inner {
+        margin-top: 45px;
+    }
+
+    .form-wrap {
+        color: #fff;
+        padding: 20px 10px;
+    }
+
+    .form-heading h4 {
+        font-size: 20px;
+    }
+}
+
+        

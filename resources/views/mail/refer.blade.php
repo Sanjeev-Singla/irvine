@@ -1,0 +1,1 @@
+<a href="{{ $details['confirm'] }}">Confirm</a><br>

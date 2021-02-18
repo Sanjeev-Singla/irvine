@@ -1,0 +1,1 @@
+<a href="{{ $details['signup-link'] }}">Signup Now</a>
