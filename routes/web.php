@@ -49,6 +49,9 @@ Route::group(['middleware'=>'auth'],function(){
         
         # All Units
         Route::get('units',[App\Http\Controllers\Owner\UnitController::class,'allUnits'])->name('all-units');
+
+        # update Unit
+        Route::post('update-unit',[App\Http\Controllers\Owner\UnitController::class,'updateUnit'])->name('update-unit');
         
         # Owner Profile
         Route::group(['prefix' => 'profile'], function () {

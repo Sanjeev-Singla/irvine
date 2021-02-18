@@ -71,7 +71,7 @@ body {
 }
 .custom-model-main-units .pop-up-content-wrap,
 .custom-model-main-tenants .pop-up-content-wrap {
-  background: lavender;
+  /* background: lavender; */
   border-radius: 10px;
 }
 .model-open .custom-model-inner {

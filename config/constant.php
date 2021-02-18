@@ -26,4 +26,11 @@ return [
             'inactive'=>0
         ]
     ],
+
+    'maintenance'   =>  [
+        'pending'   =>  0,
+        'received'  =>  1,
+        'resolved'  =>  2,
+        'cancelled' =>  3
+    ]
 ];

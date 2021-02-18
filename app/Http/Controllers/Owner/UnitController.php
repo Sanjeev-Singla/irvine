@@ -321,4 +321,14 @@ class UnitController extends Controller
         return view('owners.units.sorting.maintenance',compact('maintenanceRequests'))->render();
         
     }
+
+    public function updateUnit(Request $request){
+        $validate = \Validator::make($request->all(),UnitRequest::update_unit());
+
+        if ($validate->fail()) {
+            return $validate->errors()->first();
+        }
+
+        
+    } 
 }

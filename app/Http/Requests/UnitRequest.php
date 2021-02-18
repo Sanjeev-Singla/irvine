@@ -40,4 +40,13 @@ class UnitRequest extends FormRequest
             'rent'          =>  'required|numeric'
         ];
     }
+
+    public static function update_unit(){
+        return [
+            'bedroom'       => 'required|numeric|max:125',
+            'bathroom'      => 'required|numeric|max:125',
+            'square_footage'=> 'required|numeric|max:32766',
+            'rent'          => 'required|numeric|max:32766'
+        ];
+    } 
 }

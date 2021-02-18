@@ -109,9 +109,9 @@ class OwnerController extends Controller
         
         if ($result) {
             #\Mail::to($inputs['tenant_email'])->send(new \App\Mail\ReferTenantMail($inputs));
-            return back()->with('success','Refered Successfully.');
+            return 'Refered Successfully.';
         }
-        return back()->with('error','oops! Please try again.');
+        return 'oops! Please try again.';
     }
     
     /**
