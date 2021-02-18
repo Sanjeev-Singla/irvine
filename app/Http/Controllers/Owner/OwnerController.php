@@ -108,7 +108,7 @@ class OwnerController extends Controller
         $result = \App\Models\ReferTenant::create($inputs);
         
         if ($result) {
-            #\Mail::to($inputs['tenant_email'])->send(new \App\Mail\ReferTenantMail($inputs));
+            \Mail::to($inputs['tenant_email'])->send(new \App\Mail\ReferTenantMail($inputs));
             return 'Refered Successfully.';
         }
         return 'oops! Please try again.';
