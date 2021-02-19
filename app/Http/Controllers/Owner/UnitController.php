@@ -348,10 +348,10 @@ class UnitController extends Controller
         # getting all refered tenants by owner
         $referIdArr =  \App\Models\ReferTenant::where('owner_id',\Auth::user()->id)->pluck('id');
 
-        $order = 'DESC';
+        $order = 'ASC';
         $status='';
         if($request->status == 3){
-            $order = 'ASC';
+            $order = 'DESC';
         }
         if ($request->status < 3) {
             $status = $request->status;
@@ -376,6 +376,6 @@ class UnitController extends Controller
         # getting all refered tenants by owner
         $referIdArr =  \App\Models\ReferTenant::where('owner_id',\Auth::user()->id)->pluck('id');
 
-        
+
     }
 }
