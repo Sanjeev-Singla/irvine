@@ -93,6 +93,7 @@
                     <div class="sub-buttons-group">
                         <button class="closebut">Close</button>
                         <button class="edit-button" id="editUnit">Edit</button>
+                        <button class="edit-button" id="updateUnit" hidden></button>
                     </div>
                 </div>
             </div>

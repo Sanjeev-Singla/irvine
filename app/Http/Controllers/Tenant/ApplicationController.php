@@ -36,7 +36,7 @@ class ApplicationController extends Controller
             for ($i=0; $i < count($request->first_name); $i++) { 
                 $inputTenant['application_id']  =   $application->id;
                 $inputTenant['first_name']      =   $request->first_name[$i];
-                $inputTenant['last_name']       =   $request->last_name[$i];
+                $inputTenant['last_name']       =   !blank($request->last_name[$i])?$request->last_name[$i]:'';
                 $inputTenant['dob']             =   $request->dob[$i];
                 $inputTenant['phone']           =   $request->phone[$i];
                 $inputTenant['ssn']             =   $request->ssn[$i];
