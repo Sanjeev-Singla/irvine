@@ -30,7 +30,7 @@ class UnitController extends Controller
                                                         ->orderBy('created_at','DESC')
                                                         //->pluck('id');
                                                         ->get();
-                         dd($applications);                       
+                                                        
         # getting Tenants Emails Array
         $tenantEmailArr =   \App\Models\ReferTenant::where([
                                                 'owner_id'=>\Auth::user()->id,
