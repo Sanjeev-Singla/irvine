@@ -127,7 +127,7 @@ class OwnerController extends Controller
         $result = $application->save();
 
         if ($result) {
-            $inputs['signup-link'] = route('register');
+            $inputs['signup-link'] = route('register',$application->email);
             \Mail::to($application->email)->send(new \App\Mail\ConfirmApplicationMail($inputs));
             return back()->with('success','Application confirmed Successfully.');
         }
