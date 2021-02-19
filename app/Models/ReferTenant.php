@@ -25,4 +25,8 @@ class ReferTenant extends Model
     public function units(){
         return $this->belongsTo(Unit::class,'units_id');
     }
+
+    public function applications(){
+        return $this->hasOne(Application::class,'refer_tenant_id');
+    }
 }

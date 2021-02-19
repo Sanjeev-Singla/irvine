@@ -14,6 +14,9 @@ class ApplicationController extends Controller
         if (blank($referenceDetails)) {
             abort(401,'Not authorized');
         }
+        if (!blank($referenceDetails->applications)) {
+            return '<h1>Application submitted successfully please wait for owner response</h1>';
+        }
 
         $unitDetails =  \App\Models\Unit::find($referenceDetails->units_id);
         $applicationChk = \App\Models\Application::where(['email'=>$email,'application_status'=>\Config::get('constant.application.pending')])->first();

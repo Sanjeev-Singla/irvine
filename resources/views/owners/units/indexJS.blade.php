@@ -95,11 +95,11 @@
                 success:function(data){
                     $('#messageApplication').html(data).addClass('alert alert-primary');
                     $('input[name="tenant_email"]').val('');
-                    $('select[name="units_id"] option:selected').remove();
+                    $('select[name="units_id"] option:selected').attr('selected','');
 
                     setTimeout(function(){
                         $('.custom-model-main-new-application').removeClass('model-open');
-                        $('#messageApplication').text('').removeClass('alert alert-primary');
+                        
                     },2000);
                 },
                 error:function(data){   
@@ -238,6 +238,7 @@
             $(".custom-model-main-tenants").removeClass('model-open');
         });
         $(".new-application-modal-op").on('click', function() {
+            $('#messageApplication').text('').removeClass('alert alert-primary');
             $(".custom-model-main-new-application").addClass('model-open');
         }); 
         $(".close-btn, .bg-overlay, .closebut").click(function(){
