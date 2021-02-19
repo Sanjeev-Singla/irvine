@@ -232,7 +232,7 @@
                     <ul>
                         <li><img src="assets/img/about.jpg"></li>
                         <li>
-                            <h5><b>{{ !blank($application->applicationTenants->first_name)?$application->applicationTenants->first_name:''.' '.!blank($application->applicationTenants->last_name)?$application->applicationTenants->last_name:'' }}</b></h5>
+                            <h5><b>{{ $application->applicationTenants->first_name.' '.$application->applicationTenants->last_name }}</b></h5>
                         </li>
                         <li>
                             <h5><b>Applied</b></h5>
