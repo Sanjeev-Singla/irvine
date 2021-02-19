@@ -71,7 +71,7 @@
                                         <div class="form-group">
                                             <label for="lname">Last Name :</label>
                                             <input type="text" class="form-control" id="lname"  onkeypress="return /[a-z]/i.test(event.key)"
-                                                name="lart_name[]" value="{{ old('last_name[]') }}" maxlength="100" required/>
+                                                name="last_name[]" value="{{ old('last_name[]') }}" maxlength="100" required/>
                                         </div>
                                         @error('lart_name')
                                             <p class="text-danger">{{ $message }}</p>
