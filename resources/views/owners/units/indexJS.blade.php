@@ -128,6 +128,7 @@
             });
         });
 
+        // search maintenance        
         $("body").on('keyup','input[name="maintenance"]',function(e){
             e.preventDefault();
             var token = $(document).find('meta[name=csrf-token]').attr('content');
@@ -136,6 +137,42 @@
                 url:"{{ route('search-maintenance-request') }}",
                 type:'post',
                 data:{'_token':token,'search_maintenance':search_maintenance},
+                success:function(data){
+                    $('#maintenanceRequest').html(data);
+                },
+                error:function(data){   
+                    alert('please try later');
+                }
+            });
+        });
+
+        // Sorting application
+        $("body").on('change','select[name="application_sorting"]',function(e){
+            e.preventDefault();
+            var token = $(document).find('meta[name=csrf-token]').attr('content');
+            var status = $(this).val();
+            $.ajax({
+                url:"{{ route('sort-applications') }}",
+                type:'post',
+                data:{'_token':token,'status':status},
+                success:function(data){
+                    $('#applications').html(data);
+                },
+                error:function(data){   
+                    alert('please try later');
+                }
+            });
+        });
+
+        // search application
+        $("body").on('keyup','input[name="search_application"]',function(e){
+            e.preventDefault();
+            var token = $(document).find('meta[name=csrf-token]').attr('content');
+            var search_application = $(this).val();
+            $.ajax({
+                url:"{{ route('search-application') }}",
+                type:'post',
+                data:{'_token':token,'search_application':search_application},
                 success:function(data){
                     $('#maintenanceRequest').html(data);
                 },

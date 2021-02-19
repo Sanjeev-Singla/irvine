@@ -16,6 +16,7 @@
                 <button class="tablinks" onclick="openCity(event, 'Tokyo')">M Reqs</button>
                 <button class="tablinks" onclick="openCity(event, 'japan')">Apps</button>
             </div>
+
             {{-- Units --}}
             <div id="London" class="tabcontent" style="display:block;">
                 <h2>Units</h2>
@@ -199,10 +200,11 @@
             </div>
             {{-- End M Req --}}
 
+            {{-- Applications --}}
             <div id="japan" class="tabcontent">
                 <h2>Application</h2>
                 <div class="section-left">
-                    <input type="text" id="username" name="username"><i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="text" id="username" name="search_application"><i class="fa fa-search" aria-hidden="true"></i>
                 </div>
                 <div class="section-right">
                     <div class="icon-box">
@@ -212,13 +214,14 @@
                                 aria-hidden="true"></i></a>
                     </div>
                     <select name="application_sorting" class="input-select" autocomplete="off">
-                        <option selected="true">All</option>
-                        <option value="">Pending</option>
-                        <option value="">Received</option>
-                        <option value="">Resolved</option>
-                        <option value="">Cancelled</option>
+                        <option value="" selected>All</option>
+                        <option value="0">Pending</option>
+                        <option value="1">Confirmed</option>
+                        <option value="2">Declined</option>
+                        <option value="3">A - Z</option>
+                        <option value="4">Z - A</option>
                     </select>
-                    <select name="" class="input-select" autocomplete="off">
+                    {{-- <select name="" class="input-select" autocomplete="off">
                         <option value="1" selected="true">All Properties</option>
                         <option value="2">Business Opportunity</option>
                         <option value="3">Commercial Lease</option>
@@ -226,43 +229,47 @@
                         <option value="5">Land</option>
                         <option value="6">Residential Income</option>
                         <option value="7">Residential Lease</option>
-                    </select>
+                    </select> --}}
                 </div>
-                @forelse ($applications as $application)
-                    <ul>
-                        <li><img src="assets/img/about.jpg"></li>
-                        <li>
-                            <h5><b>{{ $application->applicationTenants->first_name.' '.$application->applicationTenants->last_name }}</b></h5>
-                        </li>
-                        <li>
-                            <h5><b>Applied</b></h5>
-                            <p>{{ date_format($application->created_at, 'd/m/Y h:i a') }}</p>
-                        </li>
-                        <li>
-                            <h5><b>Status</b></h5>
-                            @php
-                                if ($application->status == \Config::get('constant.application.pending')) {
-                                    $application->status = '<a href="#" data-toggle="modal" data-target="#exampleModal">Pending</a>';
-                                } elseif ($application->status == \Config::get('constant.application.confirm')) {
-                                    $application->status = 'Confirm';
-                                } else {
-                                    $application->status = 'Declined';
-                                }
-                            @endphp
-                            <p>{!! $application->status !!}</p>
-                        </li>
-                        <li class='text-success'><i class="fa fa-comment fa-2x"></i></li>
+                <div id="applications">
+                    @forelse ($applications as $application)
+                        <ul>
+                            
+                            <li><img src="{{ asset('public/uploads/images/default/default_image.png') }}"></li>
+                            <li>
+                                <h5><b>{{ $application->applicationTenants->first_name.' '.$application->applicationTenants->last_name }}</b></h5>
+                            </li>
+                            <li>
+                                <h5><b>Applied</b></h5>
+                                <p>{{ date_format($application->created_at, 'd/m/Y h:i a') }}</p>
+                            </li>
+                            <li>
+                                <h5><b>Status</b></h5>
+                                @php
+                                    if ($application->application_status == \Config::get('constant.application.pending')) {
+                                        $application->application_status = '<a href="#" data-toggle="modal" data-target="#exampleModal'.$application->id.'">Pending</a>';
+                                    } elseif ($application->application_status == \Config::get('constant.application.confirm')) {
+                                        $application->application_status = 'Confirm';
+                                    } else {
+                                        $application->application_status = 'Declined';
+                                    }
+                                @endphp
+                                <p>{!! $application->application_status !!}</p>
+                            </li>
+                            <li class='text-success'><i class="fa fa-comment fa-2x"></i></li>
 
-                        @include('owners.units.modals.responseApplication')
-                    </ul>
-                @empty
-                    <ul>
-                        <li>No Application available</li>
-                    </ul>
-                @endforelse
-
+                            @include('owners.units.modals.responseApplication')
+                        </ul>
+                    @empty
+                        <ul>
+                            <li>No Application available</li>
+                        </ul>
+                    @endforelse
+                </div>
                 <p class="see-text"><a href="#">See All</a></p>
             </div>
+            {{-- End Application --}}
+
         </div>
 
 

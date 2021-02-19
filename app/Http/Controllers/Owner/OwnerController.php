@@ -177,7 +177,14 @@ class OwnerController extends Controller
         return view('owners.application.edit',compact('application'));
     }
 
-
+    
+    /**
+     * updateApplication
+     *
+     * @param  mixed $request
+     * @param  mixed $id
+     * @return void
+     */
     public function updateApplication(Request $request,$id){
         $applicationDetails = \DB::table('applications')->where('id',$id)->first();
 
@@ -280,7 +287,13 @@ class OwnerController extends Controller
 
         return redirect('owner/home')->with('success','Application updated Successfully.');
     }
-
+    
+    /**
+     * updateMaintenance
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function updateMaintenance(Request $request){
         $request->validate(TenantRequest::maintenance_request());
 

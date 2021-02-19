@@ -75,10 +75,12 @@ Route::group(['middleware'=>'auth'],function(){
         # Sortings
         Route::post('sort-maintenance-request',[App\Http\Controllers\Owner\UnitController::class,'sortMaintenanceRequest'])->name('sort-maintenance-request');
         Route::post('sort-units',[App\Http\Controllers\Owner\UnitController::class,'sortUnits'])->name('sort-units');
+        Route::post('sort-applications',[App\Http\Controllers\Owner\UnitController::class,'sortApplications'])->name('sort-applications');
 
         # Searching
         Route::post('search-units',[App\Http\Controllers\Owner\UnitController::class,'searchUnits'])->name('search-units');
         Route::post('search-maintenance-request',[App\Http\Controllers\Owner\UnitController::class,'searchMaintenanceRequest'])->name('search-maintenance-request');
+        Route::post('search-application',[App\Http\Controllers\Owner\UnitController::class,'searchApplication'])->name('search-application');
     });
 
 });

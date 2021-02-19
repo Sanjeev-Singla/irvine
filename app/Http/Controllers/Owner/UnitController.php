@@ -321,7 +321,13 @@ class UnitController extends Controller
         return view('owners.units.sorting.maintenance',compact('maintenanceRequests'))->render();
         
     }
-
+    
+    /**
+     * updateUnit
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function updateUnit(Request $request){
         $validate = \Validator::make($request->all(),UnitRequest::update_unit());
 
@@ -331,4 +337,45 @@ class UnitController extends Controller
 
         
     } 
+    
+    /**
+     * sortApplications
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    public function sortApplications(Request $request){
+        # getting all refered tenants by owner
+        $referIdArr =  \App\Models\ReferTenant::where('owner_id',\Auth::user()->id)->pluck('id');
+
+        $order = 'DESC';
+        $status='';
+        if($request->status == 3){
+            $order = 'ASC';
+        }
+        if ($request->status < 3) {
+            $status = $request->status;
+        }
+
+        if (!blank($status)) {
+            $applications   =   \App\Models\Application::whereIn('refer_tenant_id',$referIdArr)
+                                                        ->where('application_status',$status)
+                                                        ->take(3)
+                                                        ->orderBy('email',$order)
+                                                        ->get();
+        }else{
+            $applications   =   \App\Models\Application::whereIn('refer_tenant_id',$referIdArr)
+                                                        ->take(3)
+                                                        ->orderBy('email',$order)
+                                                        ->get();
+        }
+        return view('owners.units.sorting.applications',compact('applications'))->render();        
+    }
+
+    public function searchApplication(Request $request){
+        # getting all refered tenants by owner
+        $referIdArr =  \App\Models\ReferTenant::where('owner_id',\Auth::user()->id)->pluck('id');
+
+        
+    }
 }

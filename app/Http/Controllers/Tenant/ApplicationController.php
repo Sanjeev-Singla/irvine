@@ -7,7 +7,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ApplicationRequest;
 
 class ApplicationController extends Controller
-{
+{    
+    /**
+     * tenantApplication
+     *
+     * @param  mixed $request
+     * @param  mixed $email
+     * @return void
+     */
     public function tenantApplication(Request $request,$email){
         $referenceDetails = \App\Models\ReferTenant::where('tenant_email',$email)->first();
 
