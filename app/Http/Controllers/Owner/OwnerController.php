@@ -165,16 +165,14 @@ class OwnerController extends Controller
             return back()->with('Invalid application id.');
         }
 
-        $application['applications_background_check'] = \DB::table('applications_background_check')->where('applications_id',$id)->first();
-        $application['applications_credit_history'] = \DB::table('applications_credit_history')->where('applications_id',$id)->first();
-        $application['applications_emergency'] = \DB::table('applications_emergency_info')->where('applications_id',$id)->first();
-        $application['applications_employement_history'] = \DB::table('applications_employement_history')->where('applications_id',$id)->first();
-        $application['applications_occupant_18_plus'] = \DB::table('applications_occupant_18_plus')->where('applications_id',$id)->first();
-        $application['applications_occupant_under_18'] = \DB::table('applications_occupant_under_18')->where('applications_id',$id)->first();
-        $application['application_pets'] = \DB::table('applications_pets')->where('applications_id',$id)->first();
-        $application['applications_renter_history'] = \DB::table('applications_renter_history')->where('applications_id',$id)->first();
-        $application['applications_vehicle_info'] = \DB::table('applications_vehicle_info')->where('applications_id',$id)->first();
-
+        $application['application_tenant'] = \DB::table('application_tenants')->where('application_id',$id)->get();
+        $application['pets'] = \DB::table('pets')->where('application_id',$id)->get();
+        $application['renter_history'] = \DB::table('renter_history')->where('application_id',$id)->first();
+        $application['employement_history'] = \DB::table('employement_history')->where('application_id',$id)->first();
+        $application['references'] = \DB::table('references')->where('application_id',$id)->get();
+        $application['emergency_contacts'] = \DB::table('emergency_contacts')->where('application_id',$id)->get();
+        $application['vehicle_info'] = \DB::table('vehicle_info')->where('application_id',$id)->first();
+        
         return view('owners.application.edit',compact('application'));
     }
 
@@ -187,106 +185,102 @@ class OwnerController extends Controller
      * @return void
      */
     public function updateApplication(Request $request,$id){
-        $applicationDetails = \DB::table('applications')->where('id',$id)->first();
-
+        $applicationDetails = \App\Models\Application::where(['id'=>$id])->first();
+        
         if (blank($applicationDetails)) {
             return back()->with('Invalid application id.');
         }
 
-        $application['full_name']               = $request->full_name;
-        $application['dob']                     = $request->dob;
-        $application['social_security_number']  = $request->social_security_number;
-        $application['phone']                   = $request->phone;
-        $application['email']                   = $request->email;
-        $application['car_no_parking_required'] = $request->car_no_parking_required;
+        $request->validate(\App\Http\Requests\ApplicationRequest::update());
 
-        \DB::table('applications')->where('id',$id)->update($application);
+        \DB::table('application_tenants')->where('application_id',$id)->delete();
+        for ($i=0; $i < count($request->first_name); $i++) { 
+            $inputTenant['application_id']     =  $id;
+            $inputTenant['first_name']      =   $request->first_name[$i];
+            $inputTenant['last_name']       =   !blank($request->last_name[$i])?$request->last_name[$i]:'';
+            $inputTenant['dob']             =   $request->dob[$i];
+            $inputTenant['phone']           =   $request->phone[$i];
+            $inputTenant['ssn']             =   $request->ssn[$i];
+            $inputTenant['created_at'] = $inputTenant['updated_at'] = date('Y-m-d H:i:s');
 
-        $occupant18Plus['occupant_full_name']               = $request->occupant_full_name;
-        $occupant18Plus['occupant_dob']                     = $request->occupant_dob;
-        $occupant18Plus['occupant_social_security_number']  = $request->occupant_social_security_number;
-        $occupant18Plus['occupant_phone']                   = $request->occupant_phone;
-        $occupant18Plus['occupant_email']                   = $request->occupant_email;
+            // if($request->hasFile('valid_id')){
+            //     $inputTenant['valid_id'] = time().$i.'.'.$request->valid_id[$i]->extension();
+            //     $request->valid_id[$i]->move(public_path('uploads/images/valid_id'), $inputTenant['valid_id']);
+            // }
+            $inputTenant['valid_id'] = '';
 
-        \DB::table('applications_occupant_18_plus')->where('applications_id',$id)->update($occupant18Plus);
+            \DB::table('application_tenants')->insert($inputTenant);
+        }
 
-        $occupantUnder18['full_name_1']     = $request->full_name_1;
-        $occupantUnder18['relationship_1']  = $request->relationship_1;
-        $occupantUnder18['full_name_2']     = $request->full_name_2;
-        $occupantUnder18['relationship_2']  = $request->relationship_2;
-        $occupantUnder18['full_name_3']     = $request->full_name_3;
-        $occupantUnder18['relationship_3']  = $request->relationship_3;
+        \DB::table('pets')->where('application_id',$id)->delete();
+        for ($i=0; $i < count($request->breed); $i++) { 
+            $inputPet['application_id']  =  $id;
+            $inputPet['breed']           =   $request->breed[$i];
+            $inputPet['weight']          =   $request->weight[$i];
 
-        \DB::table('applications_occupant_under_18')->where('applications_id',$id)->update($occupantUnder18);
+            \DB::table('pets')->insert($inputPet);
+        }
 
-        $pets['type']               =   $request->type;
-        $pets['breed']              =   $request->breed;
-        $pets['size']               =   $request->size;
-        $pets['weight']             =   $request->weight;
+        $inputRenterHistory['current_address']                 =   $request->current_address;
+        $inputRenterHistory['property_manager']                =   $request->property_manager;
+        $inputRenterHistory['city']                            =   $request->current_city;
+        $inputRenterHistory['state']                           =   $request->current_state;
+        $inputRenterHistory['zip']                             =   $request->current_zip;
+        $inputRenterHistory['manager_phone']                   =   $request->manager_phone;
+        $inputRenterHistory['current_residence_length']        =   $request->current_residence_length;
+        $inputRenterHistory['late_payment_notice_status']      =   $request->late_payment_notice_status;
+        $inputRenterHistory['late_payment_notice_description'] =   $request->late_payment_notice_description;
+        $inputRenterHistory['smoking_status']                  =   $request->smoking_status;
+        $inputRenterHistory['move_in_date']                    =   $request->move_in_date;
+        $inputRenterHistory['lease_length']                    =   $request->lease_length;
+        $inputRenterHistory['reason_to_move']                  =   $request->reason_to_move;
 
-        \DB::table('applications_pets')->where('applications_id',$id)->update($pets);
+        \DB::table('renter_history')->where('application_id',$id)->update($inputRenterHistory);
 
-        $renterHistroy['street_address']   =   $request->street_address;
-        $renterHistroy['city']             =   $request->city;
-        $renterHistroy['state']            =   $request->state;
-        $renterHistroy['zip_code']         =   $request->zip_code;
-        $renterHistroy['property_owner_name']   =   $request->property_owner_name;
-        $renterHistroy['property_owner_phone']  =   $request->property_owner_phone;
-        $renterHistroy['current_residence_length']         =   $request->current_residence_length;
-        $renterHistroy['late_payment_notice_description']  =   $request->late_payment_notice_description;
-        $renterHistroy['evicated_description']             =   $request->evicated_description;
-        $renterHistroy['felony_convicted_description']     =   $request->felony_convicted_description;
+        $inputEmployement['current_employer']   =   $request->current_employer;
+        $inputEmployement['employer_address']   =   $request->employer_address;
+        $inputEmployement['started_date']       =   $request->started_date;
+        $inputEmployement['city']               =   $request->employer_city;
+        $inputEmployement['state']              =   $request->employer_state;
+        $inputEmployement['zip']                =   $request->employer_zip;
+        $inputEmployement['supervisor_name']    =   $request->supervisor_name;
+        $inputEmployement['supervisor_phone']   =   $request->supervisor_phone;
+        $inputEmployement['supervisor_email']   =   $request->supervisor_email;
+        $inputEmployement['gross_income']       =   $request->gross_income;
+        $inputEmployement['extra_income']       =   $request->extra_income;
 
-        \DB::table('applications_renter_history')->where('applications_id',$id)->update($renterHistroy);
+        \DB::table('employement_history')->where('application_id',$id)->update($inputEmployement);
 
-        $backgroungCheck['smoke_status']            =   $request->smoke_status;
-        $backgroungCheck['looking_to_move_date']    =   $request->looking_to_move_date;
-        $backgroungCheck['reason_to_move']          =   $request->reason_to_move;
-        $backgroungCheck['lease_length_looking_for']=   $request->lease_length_looking_for;
+        \DB::table('references')->where('application_id',$id)->delete();
+        for ($i=0; $i < count($request->reference_name); $i++) { 
+            $inputReference['application_id']=  $id;
+            $inputReference['name']     =   $request->reference_name[$i];
+            $inputReference['phone']    =   $request->reference_phone[$i];
 
-        \DB::table('applications_background_check')->where('applications_id',$id)->update($backgroungCheck);
+            \DB::table('references')->insert($inputReference);
+        }
 
-        $employementHistory['employer_address']         =   $request->employer_address;
-        $employementHistory['employement_length']       =   $request->employement_length;
-        $employementHistory['supervisor_name']          =   $request->supervisor_name;
-        $employementHistory['supervisor_phone']         =   $request->supervisor_phone;
-        $employementHistory['supervisor_email']         =   $request->supervisor_email;
-        $employementHistory['gross_income']             =   $request->gross_income;
-        $employementHistory['additional_income_source'] =   $request->additional_income_source;
+        \DB::table('emergency_contacts')->where('application_id',$id)->delete();
+        for ($i=0; $i < count($request->emergency_name); $i++) { 
+            $inputEmergency['application_id']=  $id;
+            $inputEmergency['name']         =   $request->emergency_name[$i];
+            $inputEmergency['phone']        =   $request->emergency_phone[$i];
+            $inputEmergency['relationship'] =   $request->relationship[$i];
 
-        \DB::table('applications_employement_history')->where('applications_id',$id)->update($employementHistory);
+            \DB::table('emergency_contacts')->insert($inputEmergency);
+        }
 
-        $creditHistory['bankruptcy_description']   =   $request->bankruptcy_description;
-        $creditHistory['is_someone_pay_loan']      =   $request->is_someone_pay_loan;
-        $creditHistory['person_name']              =   $request->person_name;
-        $creditHistory['person_phone']             =   $request->person_phone;
-        $creditHistory['person_email']             =   $request->person_email;
-        $creditHistory['current_loan']             =   $request->current_loan;
-        $creditHistory['loan_amount']              =   $request->loan_amount;
+        $inputVehicle['car_no_parking_required'] =   $request->car_no_parking_required;
+        $inputVehicle['color']                   =   $request->color;
+        $inputVehicle['make']                    =   $request->make;
+        $inputVehicle['year']                    =   $request->year;
+        $inputVehicle['model']                   =   $request->model;
+        $inputVehicle['dln']                     =   $request->dln;
+        $inputVehicle['licence_plate_number']    =   $request->licence_plate_number;
 
-        \DB::table('applications_credit_history')->where('applications_id',$id)->update($creditHistory);
+        \DB::table('vehicle_info')->where('application_id',$id)->update($inputVehicle);
 
-        $emergencyInfo['name_1']                =   $request->name_1;
-        $emergencyInfo['phone_1']               =   $request->phone_1;
-        $emergencyInfo['name_2']                =   $request->name_2;
-        $emergencyInfo['phone_2']               =   $request->phone_2;
-        $emergencyInfo['name_3']                =   $request->name_3;
-        $emergencyInfo['phone_3']               =   $request->phone_3;
-        $emergencyInfo['emergency_person_name'] =   $request->emergency_person_name;
-        $emergencyInfo['emergency_phone']       =   $request->emergency_phone;
-
-        \DB::table('applications_emergency_info')->where('applications_id',$id)->update($emergencyInfo);
-
-        $vehicleInfo['make']                =   $request->make;
-        $vehicleInfo['model']               =   $request->model;
-        $vehicleInfo['color']               =   $request->color;
-        $vehicleInfo['year']                =   $request->year;
-        $vehicleInfo['licence_number']      =   $request->licence_number;
-        $vehicleInfo['licence_plate_number']=   $request->licence_plate_number;
-
-        \DB::table('applications_vehicle_info')->where('applications_id',$id)->update($vehicleInfo);
-
-        return redirect('owner/home')->with('success','Application updated Successfully.');
+        return redirect()->back()->with('success','Application updated Successfully.');
     }
     
     /**

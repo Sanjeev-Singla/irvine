@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Application extends Model
 {
@@ -20,5 +21,9 @@ class Application extends Model
 
     public function applicationTenants(){
         return $this->hasOne(ApplicationTenant::class,'application_id');
+    }
+
+    public function referTenants(){
+        return $this->belongsTo(ReferTenant::class,'refer_tenant_id');
     }
 }

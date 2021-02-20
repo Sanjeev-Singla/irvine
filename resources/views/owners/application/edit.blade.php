@@ -1,667 +1,586 @@
-@extends('layouts.auth')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @include('flash-message')
-    <br><br>
-    <section class="login-page tenbox-app">
-        <div class="container">
-            <div class="myheading">
-                <h1 class="heading">Graham Cracker</h1>
-            </div>
+    <title>Tenant Application</title>
+    
+    <!-- Favicons -->
+    <link href="{{ asset('public/assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('public/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,600,600i,700,700i,900"
+        rel="stylesheet" />
+    <link href="{{ asset('public/assets/css/minstyle.css') }}" rel="stylesheet">
+</head>
 
-            <div class="agent-profile-row1 agent-profile-row11 row">
-                <div class="col-md-12">
-                    <form action="{{ route('update-application',$application['applications']->id) }}" method="POST">
-                        @csrf
-                        <h4 class="text-center">Applications</h4>
-                        <h5 class="text-left mb-3">Personal Information</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Full Name</label>
-                                    <input class="form-control" value="{{ $application['applications']->full_name }}" name='full_name' type="text">
+<body>
+    <main>
+        <div id="header-sticky-wrapper" class="sticky-wrapper is-sticky" style="height: 88px">
+            <header id="header" class="">
+                <div class="container">
+                    <div class="logo">
+                        <img src="http://blount.us/irvine/public/assets/img/logo.png" />
+                    </div>
+                    <div class="box-icon"></div>
+                </div>
+            </header>
+        </div>
+
+        
+        <div class="main-sec">
+            @include('flash-message')
+            <form action="{{ route('update-application',$application['applications']->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="mainform-heading">
+                    <h2>Tenant Application</h2>
+                </div>
+                <div class="mainform-area">
+
+                    {{-- Tenant Details --}}
+                    <div class="row main-row">
+                        @forelse ($application['application_tenant'] as $tenant)
+                            <div class="col-sm-12">
+                                <div class="tenantDetails">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="fname">First Name :</label>
+                                                <input type="text" class="form-control" id="fname" onkeypress="return /[a-z]/i.test(event.key)" 
+                                                    name="first_name[]" value="{{ $tenant->first_name }}" maxlength="100" minlength="3" required/>
+                                            </div>
+                                            @error('first_name')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="lname">Last Name :</label>
+                                                <input type="text" class="form-control" id="lname"  onkeypress="return /[a-z]/i.test(event.key)"
+                                                    name="last_name[]" value="{{ $tenant->last_name }}" maxlength="100" required/>
+                                            </div>
+                                            @error('lart_name')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="birthdate">Date of Birth :</label>
+                                                <input type="date" value="{{ $tenant->dob }}" class="form-control" id="birthdate" name="dob[]" required/>
+                                            </div>
+                                            @error('dob')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="phone">Phone :</label>
+                                                <input type="number" value="{{ $tenant->phone }}" class="form-control" name="phone[]" required/>
+                                            </div>
+                                            @error('phone')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="ssn">SSN :</label>
+                                                <input type="text" value="{{ $tenant->ssn }}" class="form-control" id="ssn" placeholder="" name="ssn[]" required/>
+                                            </div>
+                                            @error('ssn')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="valid">Valid ID :</label>
+                                                <img width="10px" height="10px" src="{{ $tenant->valid_id }}" alt="">
+                                                <input type="file" name="valid_id[]" class="form-control-file" id="valid"/>
+                                            </div>
+                                            @error('file')
+                                                <p class="text-danger">{{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <hr>
                                 </div>
-                                @error('full_name')
+                                <div class="add-data tenantDetailsPlus">
+                                    <i class="fas fa-minus" id="tenantDetailsMinus"></i>
+                                    <i class="fas fa-plus" id="tenantDetailsPlus"></i>
+                                </div>
+                            </div>
+                        @empty
+                        @endforelse
+                        
+                    </div>
+                    {{-- End Tenant Details --}}
+
+                    {{-- Pets --}}
+                    <div class="row pets-section">
+                        <div class="col-sm-3">
+                            <div class="pets-sec">
+                                <div class="pets-button">Pets</div>
+                            </div>
+                        </div>
+                        
+                        @forelse ($application['pets'] as $pet)
+                            
+                            <div class="col-sm-7">
+                                <div class="row petDetails">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="breed">Breed :</label>
+                                            <input type="text" onkeypress="return /[a-z]/i.test(event.key)" value="{{ $pet->breed }}" class="form-control" maxlength="100" id="breed" name="breed[]" required/>
+                                        </div>
+                                        @error('breed')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="weight">Weight :</label>
+                                            <input type="number" value="{{ $pet->weight }}" class="form-control" value="weight" id="weight" name="weight[]" required/>
+                                        </div>
+                                        @error('weight')
+                                            <p class="text-danger">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+                        @empty
+                        @endforelse
+                        
+                        <div class="col-sm-2 text-center">
+                            <i class="fas fa-minus" id="petDetailsMinus"></i>
+                            <i class="fas fa-plus" id="petDetailsPlus"></i>
+                        </div>
+                    </div>
+                    <hr />
+                    {{-- End Pet Section --}}
+
+                    {{-- Renter Histroy Section --}}
+                    <div class="heading">
+                        <h2>Renter History</h2>
+                    </div>
+                    <div class="row renter-section">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="inputAddress">Current Address :</label>
+                                <input type="text" class="form-control" value="{{ $application['renter_history']->current_address }}" maxlength="255" name="current_address" id="inputAddress" placeholder="Street" required/>
+                            </div>
+                            @error('current_address')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <input type="text" class="form-control" value="{{ $application['renter_history']->city }}" name="current_city" maxlength="255" id="inputCity" placeholder="City" required/>
+                                </div>
+                                @error('current_city')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Date of Birth</label>
-                                    <input class="form-control" value="{{ $application['applications']->dob }}" name='dob' type="date">
+                                <div class="form-group col-md-4">
+                                    <input type="text" class="form-control" value="{{ $application['renter_history']->state }}" name="current_state" maxlength="255" id="inputState" placeholder="State" required/>
                                 </div>
-                                @error('dob')
+                                @error('current_state')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                                <div class="form-group col-md-4">
+                                    <input type="text" class="form-control" value="{{ $application['renter_history']->zip }}" name="current_zip" maxlength="20" id="inputZip" placeholder="Zip" required/>
+                                </div>
+                                @error('current_zip')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Social Security Number</label>
-                                    <input name="social_security_number" value="{{ $application['applications']->social_security_number }}" class="form-control" type="text">
-                                </div>
-                                @error('social_security_number')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="manager">Property Manager :</label>
+                                <input type="text" name="property_manager" value="{{ $application['renter_history']->property_manager }}" maxlength="100" class="form-control" id="manager" placeholder="" required/>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Cell Phone Number</label>
-                                    <input name="phone" value="{{ $application['applications']->phone }}" class="form-control" type="text">
-                                </div>
-                                @error('phone')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                            @error('property_manager')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                            <div class="form-group">
+                                <label for="managerphone">Manager Phone :</label>
+                                <input type="number" name="manager_phone" value="{{ $application['renter_history']->manager_phone }}" class="form-control" id="managerphone" placeholder="" required/>
+                            </div>
+                            @error('manager_phone')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="residence-length">Length of current residence :</label>
+                                <input type="number" value="{{ $application['renter_history']->current_residence_length }}" name="current_residence_length" class="form-control" id="residence-length" required/>
+                            </div>
+                            @error('current_residence_length')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-12">
+                            <label style="margin-top: 30px">Have you ever been served a late payment notice? If yes, explain</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="late_payment_notice_status" id="Radios1"
+                                    value="0" {{ !blank($application['renter_history']->late_payment_notice_status)?'checked':'' }} />
+                                <label class="form-check-label" for="Radios1"> No </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="late_payment_notice_status" id="Radios2"
+                                    value="1" {{ !blank($application['renter_history']->late_payment_notice_status)?'checked':'' }}/>
+                                <label class="form-check-label" for="Radios2"> Yes </label>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="late_payment_notice_description" id="latepaymentreason" rows="3"></textarea>
+                            </div>
+                            <label style="margin-top: 30px">Do you somking_statuse ?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" name="smoking_status" type="radio" id="Radios1"
+                                    value="0" {{!blank($application['renter_history']->smoking_status)?'checked':''}} />
+                                <label class="form-check-label" for="Radios1"> No </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="smoking_status" id="Radios2"
+                                    value="1" {{!blank($application['renter_history']->smoking_status)?'checked':''}} />
+                                <label class="form-check-label" for="Radios2"> Yes </label>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>Email Address</label>
-                                    <input name="email" value="{{ $application['applications']->email }}" class="form-control" type="text">
-                                </div>
-                                @error('email')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="movedate">When is your ideal move in date ?</label>
+                                <input type="date" class="form-control" value="{{ $application['renter_history']->move_in_date }}" id="movedate" name="move_in_date" />
+                            </div>
+                            @error('move_in_date')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="lease">How long do you want your lease to be ?</label>
+                                <input type="number" value="{{ $application['renter_history']->lease_length }}" class="form-control" id="lease" name="lease_length" required/>
+                            </div>
+                            @error('lease_length')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-12 mt-4">
+                            <div class="form-group">
+                                <label for="movingreason">Why are you moving from your current residence ?</label>
+                                <textarea class="form-control move-textarea" name="reason_to_move" id="movingreason" rows="3">{{ $application['renter_history']->reason_to_move }}</textarea>
                             </div>
                         </div>
+                    </div>
+                    <hr />
+                    {{-- End Renter Histroy --}}
 
-                        <h5 class="text-left mb-3">Additional Occupant Info (18+)</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Full Name</label>
-                                    <input name="occupant_full_name" value="{{ $application['applications_occupant_18_plus']->occupant_full_name }}" class="form-control" type="text">
-                                </div>
-                                @error('occupant_full_name')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                    {{-- Employement History --}}
+                    <div class="heading">
+                        <h2>Employment History</h2>
+                    </div>
+                    <div class="row employment-section">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="curremployer">Current Employer :</label>
+                                <input type="text" value="{{ $application['employement_history']->current_employer }}" name="current_employer" maxlength="255" class="form-control" required/>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Date of Birth</label>
-                                    <input name="occupant_dob" value="{{ $application['applications_occupant_18_plus']->occupant_dob }}" class="form-control" type="date">
-                                </div>
-                                @error('occupant_dob')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                            @error('current_employer')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                            <div class="form-group">
+                                <label for="employstartdate">Date Started :</label>
+                                <input type="date" value="{{ $application['employement_history']->started_date }}" name="started_date" class="form-control" placeholder=""
+                                    name="employstartdate" required/>
                             </div>
+                            @error('started_date')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Social Security Number</label>
-                                    <input name="occupant_social_security_number" value="{{ $application['applications_occupant_18_plus']->occupant_social_security_number }}" class="form-control" type="text">
-                                </div>
-                                @error('occupant_social_security_number')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="inputAddress">Employer Address :</label>
+                                <input type="text" value="{{ $application['employement_history']->employer_address }}" class="form-control" name="employer_address" maxlength="255" placeholder="Street" required/>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Cell Phone Number</label>
-                                    <input name="occupant_phone" value="{{ $application['applications_occupant_18_plus']->occupant_phone }}" class="form-control" type="text">
-                                </div>
-                                @error('occupant_phone')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>Email Address</label>
-                                    <input name="occupant_email" value="{{ $application['applications_occupant_18_plus']->occupant_email }}" class="form-control" type="text">
-                                </div>
-                                @error('occupant_email')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <h5 class="text-left mb-3"> Additional Occupant Info (Under 18)</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Full Name</label>
-                                    <input name="full_name_1" value="{{ $application['applications_occupant_under_18']->full_name_1 }}" class="form-control" type="text">
-                                </div>
-                                @error('full_name_1')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label> Relationship to Resident</label>
-                                    <input name="relationship_1" value="{{ $application['applications_occupant_under_18']->relationship_1 }}" class="form-control" type="text">
-                                </div>
-                                @error('relationship_1')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Full Name</label>
-                                    <input name="full_name_2" value="{{ $application['applications_occupant_under_18']->full_name_2 }}" class="form-control" type="text">
-                                </div>
-                                @error('full_name_2')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label> Relationship to Resident</label>
-                                    <input name="relationship_2" value="{{ $application['applications_occupant_under_18']->relationship_2 }}" class="form-control" type="text">
-                                </div>
-                                @error('relationship_2')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Full Name</label>
-                                    <input name="full_name_3" value="{{ $application['applications_occupant_under_18']->full_name_3 }}" class="form-control" type="text">
-                                </div>
-                                @error('full_name_3')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label> Relationship to Resident</label>
-                                    <input name="relationship_3" value="{{ $application['applications_occupant_under_18']->relationship_3 }}" class="form-control" type="text">
-                                </div>
-                                @error('relationship_3')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <h5 class="text-left mb-3">Pets</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Type</label>
-                                    <input name="type" value="{{ $application['application_pets']->type }}" class="form-control" type="text">
-                                </div>
-                                @error('type')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Breed</label>
-                                    <input name="breed" value="{{ $application['application_pets']->breed }}" class="form-control" type="text">
-                                </div>
-                                @error('breed')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Size</label>
-                                    <input name="size" value="{{ $application['application_pets']->size }}" class="form-control" type="text">
-                                </div>
-                                @error('size')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Weight</label>
-                                    <input name="weight" value="{{ $application['application_pets']->weight }}" class="form-control" type="text">
-                                </div>
-                                @error('weight')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-
-                        <h5 class="text-left mb-3">Renter History</h5>
-
-
-
-                        <h6>Current Address</h6>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Street Address</label>
-                                    <input value="{{ $application['applications_renter_history']->street_address }}" name="street_address" class="form-control" type="text">
-                                </div>
-                                @error('street_address')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
+                            @error('employer_address')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
                                     <label>City</label>
-                                    <input name="city" value="{{ $application['applications_renter_history']->city }}" class="form-control" type="text">
+                                    <input type="text" value="{{ $application['employement_history']->city }}" class="form-control" name="employer_city" maxlength="100" placeholder="" required/>
                                 </div>
-                                @error('city')
+                                @error('employer_city')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
+                                <div class="form-group col-md-4">
                                     <label>State</label>
-                                    <input name="state" value="{{ $application['applications_renter_history']->state }}" class="form-control" type="text">
+                                    <input type="text" value="{{ $application['employement_history']->state }}" class="form-control" name="employer_state" maxlength="100" placeholder="" required/>
                                 </div>
-                                @error('state')
+                                @error('employer_state')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Zip Code</label>
-                                    <input name="zip_code" value="{{ $application['applications_renter_history']->zip_code }}" class="form-control" type="text">
+                                <div class="form-group col-md-4">
+                                    <label>Zip</label>
+                                    <input type="text" value="{{ $application['employement_history']->zip }}" class="form-control" name="employer_zip" maxlength="20" placeholder="" required/>
                                 </div>
-                                @error('zip_code')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Owner/Property Manager Name</label>
-                                    <input name="property_owner_name" value="{{ $application['applications_renter_history']->property_owner_name }}" class="form-control" type="text">
-                                </div>
-                                @error('property_owner_name')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Owner/Property Manager Phone Number</label>
-                                    <input name="property_owner_phone" value="{{ $application['applications_renter_history']->property_owner_phone }}" class="form-control" type="text">
-                                </div>
-                                @error('property_owner_phone')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>Length of current residence</label>
-                                    <input name="current_residence_length" value="{{ $application['applications_renter_history']->current_residence_length }}" class="form-control" type="text">
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>Have you ever been served a late payment notice? If yes, please explain.</label>
-                                    <textarea name="late_payment_notice_description" class="form-control" type="textarea">{{ $application['applications_renter_history']->late_payment_notice_description }}</textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>Have you ever been evicted? If yes, please explain.</label>
-                                    <textarea name="evicated_description" class="form-control" type="textarea">{{ $application['applications_renter_history']->evicated_description }}</textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>Have you ever been convicted of a felony? If yes, please explain.</label>
-                                    <textarea name="felony_convicted_description" class="form-control" type="textarea">{{ $application['applications_renter_history']->felony_convicted_description }}</textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h5 class="text-left mb-3">Background Check</h5>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>Do you smoke?</label>
-                                    <select name="smoke_status" class="form-control">
-                                        <option value="1" {{ ($application['applications_background_check']->smoke_status==1)?'selected':'' }}>Yes</option>
-                                        <option value="0" {{ ($application['applications_background_check']->smoke_status==0)?'selected':'' }}>No</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>When are you looking to move in?</label>
-                                    <input value="{{ $application['applications_background_check']->looking_to_move_date }}" name="looking_to_move_date" class="form-control" type="date">
-                                </div>
-                                @error('looking_to_move_date')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>What length of a lease are you looking for?</label>
-                                    <input name="lease_length_looking_for" value="{{ $application['applications_background_check']->lease_length_looking_for }}" class="form-control" type="text">
-                                </div>
-                                @error('lease_length_looking_for')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>Why are you moving from your current place of residence?</label>
-                                    <input name="reason_to_move" value="{{ $application['applications_background_check']->reason_to_move }}" class="form-control" type="text">
-                                </div>
-                                @error('reason_to_move')
+                                @error('employer_zip')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
+                    </div>
 
-                        <h5 class="text-left mb-3">Employment History</h5>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="supervisorname">Supervisor Name :</label>
+                                <input type="text" onkeypress="return /[a-z]/i.test(event.key)" value="{{ $application['employement_history']->supervisor_name }}" name="supervisor_name" class="form-control" placeholder="" />
+                            </div>
+                            @error('supervisor_name')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="supervisorphone">Supervisor Phone :</label>
+                                <input type="number" value="{{ $application['employement_history']->supervisor_phone }}" class="form-control" id="supervisorphone" placeholder=""
+                                    name="supervisor_phone" />
+                            </div>
+                            @error('supervisor_phone')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="supervisoremail">Supervisor Email :</label>
+                                <input type="email" value="{{ $application['employement_history']->supervisor_email }}" class="form-control" name="supervisor_email" />
+                            </div>
+                            @error('supervisor_email')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="grossincome">Gross Monthly Income :</label>
+                                <input type="number" value="{{ $application['employement_history']->gross_income }}" class="form-control" placeholder="" name="gross_income" />
+                            </div>
+                            @error('gross_income')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="additionalincome">Additional Income Sources & Amounts :</label>
+                                <textarea class="form-control move-textarea" name="extra_income" rows="3">{{ $application['employement_history']->extra_income }}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    {{-- End Employement History --}}
+
+                    {{-- References --}}
+                    <div class="heading">
+                        <h2>Refrences</h2>
+                        <p>Please include at least three references below.</p>
+                    </div>
+                    
+                    @forelse ($application['references'] as $references)
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>Current Place of Employment & Address</label>
-                                    <input name="employer_address" value="{{ $application['applications_employement_history']->employer_address }}" class="form-control" type="text">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="refname1">Reference Name :</label>
+                                    <input onkeypress="return /[a-z]/i.test(event.key)" type="text" class="form-control" value="{{ $references->name }}" name="reference_name[]" maxlength="100" required/>
+                                    @error('reference_name')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
                                 </div>
-                                @error('employer_address')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
                             </div>
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>Length of Employment </label>
-                                    <input name="employement_length" value="{{ $application['applications_employement_history']->employement_length }}" class="form-control" type="text">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="refphone1">Reference Phone :</label>
+                                    <input type="number" class="form-control" name="reference_phone[]" value="{{ $references->phone }}" maxlength="100" required/>
                                 </div>
-                                @error('employement_length')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Supervisor Name </label>
-                                    <input name="supervisor_name" value="{{ $application['applications_employement_history']->supervisor_name }}" class="form-control" type="text">
-                                </div>
-                                @error('supervisor_name')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Supervisor Phone Number</label>
-                                    <input name="supervisor_phone" value="{{ $application['applications_employement_history']->supervisor_phone }}" class="form-control" type="text">
-                                </div>
-                                @error('supervisor_phone')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Supervisor Email Address</label>
-                                    <input name="supervisor_email" value="{{ $application['applications_employement_history']->supervisor_email }}" class="form-control" type="text">
-                                </div>
-                                @error('supervisor_email')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Gross Monthly Income</label>
-                                    <input name="gross_income" value="{{ $application['applications_employement_history']->gross_income }}" class="form-control" type="text">
-                                </div>
-                                @error('gross_income')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>Additional Income Sources & Amount</label>
-                                    <input name="additional_income_source" value="{{ $application['applications_employement_history']->additional_income_source }}" class="form-control" type="text">
-                                </div>
-                                @error('additional_income_source')
+                                @error('reference_phone')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
+                    @empty
+                    @endforelse
+                    
+                    <div class="add-data">
+                        <i class="fas fa-minus" id="referenceMinus"></i>
+                        <i class="fas fa-plus" id="referencePlus"></i>
+                    </div>
+                    <hr />
+                    {{-- References --}}
 
+                    {{-- Emergency Section --}}
+                    <div class="heading">
+                        <h2>Emergency Contact</h2>
+                        <p>
+                            Please include an emergency contact that does not reside at the
+                            same residence.
+                        </p>
+                    </div>
 
-                        <h5 class="text-left mb-3">Credit History (Background Check)</h5>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>Have you ever filed for bankruptcy? If yes, please explain.</label>
-                                    <textarea name="bankruptcy_description" class="form-control" type="textarea">{{ $application['applications_credit_history']->bankruptcy_description }}</textarea>
+                    @forelse ($application['emergency_contacts'] as $emergency_contact)
+                        
+                        <div class="row ememergencyDetails">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="emergencyname">Emergency Contact Name :</label>
+                                    <input type="text" onkeypress="return /[a-z]/i.test(event.key)" class="form-control" value="{{ $emergency_contact->name }}" maxlength="100" placeholder=""
+                                        name="emergency_name[]" required/>
                                 </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label>If you are unable to pay rent, is someone able to loan you the money?</label>
-                                    <select name="is_someone_pay_loan" class="form-control">
-                                        <option value="1" {{ ($application['applications_credit_history']->bankruptcy_description==1)?'selected':'' }}>Yes</option>
-                                        <option value="0" {{ ($application['applications_credit_history']->bankruptcy_description==0)?'selected':'' }}>No</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <h5 class="text-left mb-3">Please include person’s name, phone number and email address if
-                            applicable.</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Person’s Name</label>
-                                    <input value="{{ $application['applications_credit_history']->person_name }}" name="person_name" class="form-control" type="text">
-                                </div>
-                                @error('person_name')
+                                @error('emergency_name')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Phone Number</label>
-                                    <input name="person_phone" value="{{ $application['applications_credit_history']->person_phone }}" class="form-control" type="text">
-                                </div>
-                                @error('person_phone')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Email Address</label>
-                                    <input name="person_email" value="{{ $application['applications_credit_history']->person_email }}" class="form-control" type="email">
-                                </div>
-                                @error('person_email')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                        <h5 class="text-left mb-3">Current Loans & Amount Owed (list all that apply)</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Current Loans</label>
-                                    <select name="current_loan" class="form-control">
-                                        <option name="1" {{ ($application['applications_credit_history']->current_loan==1)?'selected':'' }}>Loan1</option>
-                                        <option name="2" {{ ($application['applications_credit_history']->current_loan==2)?'selected':'' }}>Loan2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Amount Owed</label>
-                                    <input type="text" value="{{ $application['applications_credit_history']->loan_amount }}" name="loan_amount" class="form-control">
-                                </div>
-                                @error('loan_amount')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <h5 class="text-left mb-3">Reference and Emergency Contact Information. Please include at least
-                            three references below and one emergency contact. Emergency contact must not live at the same
-                            residence.</h5>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Name</label>
-                                    <input name="name_1" value="{{ $application['applications_emergency']->name_1 }}" class="form-control" type="text">
-                                </div>
-                                @error('name_1')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Phone Number</label>
-                                    <input name="phone_1" value="{{ $application['applications_emergency']->phone_1 }}" class="form-control" type="text">
-                                </div>
-                                @error('phone_1')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Name</label>
-                                    <input name="name_2" value="{{ $application['applications_emergency']->name_2 }}" class="form-control" type="text">
-                                </div>
-                                @error('name_2')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Phone Number</label>
-                                    <input name="phone_2" value="{{ $application['applications_emergency']->phone_2 }}" class="form-control" type="text">
-                                </div>
-                                @error('phone_2')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Name</label>
-                                    <input name="name_3" value="{{ $application['applications_emergency']->name_3 }}" class="form-control" type="text">
-                                </div>
-                                @error('name_3')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Phone Number</label>
-                                    <input name="phone_3" value="{{ $application['applications_emergency']->phone_3 }}" class="form-control" type="text">
-                                </div>
-                                @error('phone_3')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Emergency Contact Name</label>
-                                    <input name="emergency_person_name" value="{{ $application['applications_emergency']->emergency_person_name }}" class="form-control" type="text">
-                                </div>
-                                @error('emergency_person_name')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Emergency Phone Number</label>
-                                    <input name="emergency_phone" value="{{ $application['applications_emergency']->emergency_phone }}" class="form-control" type="text">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="emergencyphone">Emergency Contact Phone :</label>
+                                    <input type="number" class="form-control" value="{{ $emergency_contact->phone }}" maxlength="100" name="emergency_phone[]" required/>
                                 </div>
                                 @error('emergency_phone')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="contactrelation">Contact Relationship :</label>
+                                    <input type="text" onkeypress="return /[a-z]/i.test(event.key)" class="form-control" id="contactrelation" value="{{ $emergency_contact->relationship }}"
+                                        name="relationship[]" maxlength="30" required/>
+                                    @error('relationship')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
-
-
-                        <h5 class="text-left mb-3">Vehicle Information</h5>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group text-left">
-                                    <label> How many cars require parking space if application is accepted?</label>
-                                    <select name="car_no_parking_required" class="form-control">
-                                        <option value="1" {{ ($application['applications']->car_no_parking_required==1)?'selected':'' }}>1</option>
-                                        <option value="2" {{ ($application['applications']->car_no_parking_required==2)?'selected':'' }}>2</option>
-                                    </select>
+                    @empty 
+                        <div class="row ememergencyDetails">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="emergencyname">Emergency Contact Name :</label>
+                                    <input type="text" onkeypress="return /[a-z]/i.test(event.key)" class="form-control" value="{{ old('emergency_name[]') }}" maxlength="100" placeholder=""
+                                        name="emergency_name[]" required/>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Make</label>
-                                    <select name="make" class="form-control">
-                                        <option value="1" {{ ($application['applications_vehicle_info']->make==1)?'selected':'' }}>1</option>
-                                        <option value="2" {{ ($application['applications_vehicle_info']->make==2)?'selected':'' }}>2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Model</label>
-                                    <select name="model" class="form-control">
-                                        <option value="1" {{ ($application['applications_vehicle_info']->model==1)?'selected':'' }}>1</option>
-                                        <option value="2" {{ ($application['applications_vehicle_info']->model==2)?'selected':'' }}>2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Color</label>
-                                    <select name="color" class="form-control">
-                                        <option value="1" {{ ($application['applications_vehicle_info']->color==1)?'selected':'' }}>1</option>
-                                        <option value="2" {{ ($application['applications_vehicle_info']->color==2)?'selected':'' }}>2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Year</label>
-                                    <select name="year" class="form-control">
-                                        <option value="1" {{ ($application['applications_vehicle_info']->year==1)?'selected':'' }}>1</option>
-                                        <option value="2" {{ ($application['applications_vehicle_info']->year==2)?'selected':'' }}>2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>Driver’s License Number</label>
-                                    <input name="licence_number" value="{{ $application['applications_vehicle_info']->licence_number }}" class="form-control" type="text">
-                                </div>
-                                @error('licence_number')
+                                @error('emergency_name')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group text-left">
-                                    <label>License Plate Number</label>
-                                    <input name="licence_plate_number" value="{{ $application['applications_vehicle_info']->licence_plate_number }}" class="form-control" type="text">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="emergencyphone">Emergency Contact Phone :</label>
+                                    <input type="number" class="form-control" value="{{ old('emergency_phone[]') }}" maxlength="100" name="emergency_phone[]" required/>
                                 </div>
-                                @error('licence_plate_number')
+                                @error('emergency_phone')
                                     <p class="text-danger">{{ $message }}</p>
                                 @enderror
                             </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="contactrelation">Contact Relationship :</label>
+                                    <input type="text" onkeypress="return /[a-z]/i.test(event.key)" class="form-control" id="contactrelation" value="{{ old('relationship[]') }}"
+                                        name="relationship[]" maxlength="30" required/>
+                                    @error('relationship')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
+                    @endforelse
+                    
+                    <div class="add-data">
+                        <i class="fas fa-minus" id="ememergencyDetailsMinus"></i>
+                        <i class="fas fa-plus" id="ememergencyDetailsPlus"></i>
+                    </div>
+                    <hr />
+                    {{-- End Emergency Section --}}
 
-                        <div class="tenbox11 tenbox15">
-                            <button id="button_signmeup" type="submit">Submit</button>
+                    {{-- Vehicle Information --}}
+                    <div class="heading">
+                        <h2>Vehicle Information</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="carscount">How many cars require parking space ?</label>
+                                <input type="number" class="form-control" id="carscount" value="{{ $application['vehicle_info']->car_no_parking_required }}"
+                                    name="car_no_parking_required" required/>
+                            </div>
+                            @error('car_no_parking_required')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
-                    </form>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="color">Color :</label>
+                                <input type="text" class="form-control" onkeypress="return /[a-z]/i.test(event.key)" maxlength="50" value="{{ $application['vehicle_info']->color }}" name="color" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="make">Make :</label>
+                                <input type="text" class="form-control" name="make" value="{{ $application['vehicle_info']->make }}" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="year">Year :</label>
+                                <input type="number" class="form-control" id="year" value="{{ $application['vehicle_info']->year }}" placeholder="" name="year" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="model">Model :</label>
+                                <input type="text" class="form-control" id="model" value="{{ $application['vehicle_info']->model }}" placeholder="" name="model" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="drivingno">DLN :</label>
+                                <input type="text" class="form-control" maxlength="50" value="{{ $application['vehicle_info']->dln }}" name="dln" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label for="plateno">License Plate Number :</label>
+                                <input type="text" class="form-control" value="{{ $application['vehicle_info']->licence_plate_number }}" name="licence_plate_number" maxlength="50"/>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    {{-- End Vehicle Information --}}
+
+                    <div class="final-submission">
+                        <button class="background-button">Take Background Check</button>
+                        <button class="submit-button" type="submit">
+                            Update
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
-    </section>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="{{ asset('public/assets/vendor/jquery/jquery.min.js') }}"></script>
+        <script src="{{ asset('public/assets/js/main.js') }}"></script>
+        @include('tenant.applicationJS')
+    </main>
+</body>
 
-@endsection
+</html>

@@ -109,7 +109,7 @@ class ApplicationController extends Controller
                 $inputEmergency['phone']        =   $request->emergency_phone[$i];
                 $inputEmergency['relationship'] =   $request->relationship[$i];
 
-                \DB::table('references')->insert($inputEmergency);
+                \DB::table('emergency_contacts')->insert($inputEmergency);
             }
 
             $inputVehicle['application_id']          =   $application->id;

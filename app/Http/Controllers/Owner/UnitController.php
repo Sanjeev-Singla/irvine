@@ -280,7 +280,7 @@ class UnitController extends Controller
 
         $result['status'] = true;
         $result['msg']    = '<p class="alert alert-success">Unit deleted successfully.</p>';
-
+        
         return $result;
     }
     
