@@ -47,9 +47,9 @@
                 </div>
                 <div id="unitSorting">
                     @forelse ($units as $item)
-                        <ul class="units-modal-op">
+                        <ul>
                             <li><img src="{{ $item->upload_image }}"></li>
-                            <li>
+                            <li class="units-modal-op" id="unit_{{$item->id}}">
                                 <h5>{{ $item->address }}</h5>
                                 <a href="#">list units</a>
                             </li>
@@ -67,6 +67,12 @@
                             </li>
                             <li><strong>Payment Status</strong>
                                 <p>London is the capital</p>
+                            </li>
+                            <li>
+                                <center>
+                                    <strong>Delete</strong>
+                                    <p><a href="#" class="text-danger"><i unit-id='{{ $item->id }}' id="deleteUnit" class="fa fa-trash fa-2x"></i></a></p>
+                                </center>
                             </li>
                         </ul>
 
@@ -112,7 +118,7 @@
                 </div>
                 @forelse ($users as $user)
                     <ul class="tenants-modal-op">
-                        <li><img src="{{ $user->profile_image }}"></li>
+                        <li><img src="{{ asset('public/uploads/images/default/default_image.png') }}"></li>
                         <li>
                             <h5><b>{{ $user->first_name . ' ' . $user->last_name }}</b></h5>
                             <a href="#">list units</a>

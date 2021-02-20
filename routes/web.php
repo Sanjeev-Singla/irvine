@@ -52,6 +52,9 @@ Route::group(['middleware'=>'auth'],function(){
 
         # update Unit
         Route::post('update-unit',[App\Http\Controllers\Owner\UnitController::class,'updateUnit'])->name('update-unit');
+
+        # delete Unit
+        Route::post('delete-unit',[App\Http\Controllers\Owner\UnitController::class,'deleteUnits'])->name('delete-unit');
         
         # Owner Profile
         Route::group(['prefix' => 'profile'], function () {

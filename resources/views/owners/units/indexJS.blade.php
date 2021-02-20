@@ -228,6 +228,7 @@
             });
         });
 
+        // search units
         $("body").on('keyup','input[name="search_unit"]',function(e){
             e.preventDefault();
             var token = $(document).find('meta[name=csrf-token]').attr('content');
@@ -238,6 +239,31 @@
                 data:{'_token':token,'search_unit':search_unit},
                 success:function(data){
                     $('#unitSorting').html(data);
+                },
+                error:function(data){   
+                    alert('please try later');
+                }
+            });
+        });
+
+        // delete units
+        $("i#deleteUnit").on('click',function(e){
+            e.preventDefault();
+            var unit_id = $(this).attr('unit-id');
+            var token = $(document).find('meta[name=csrf-token]').attr('content');
+            var $this = $(this);
+            
+            $.ajax({
+                url:"{{ route('delete-unit') }}",
+                type:'post',
+                data:{'_token':token,'unit_id':unit_id},
+                success:function(data){
+                    if (data.status == true) {
+                        $this.closest('ul').remove();
+                        $('#team .container').prepend(data.msg);
+                    }else{
+                        $('#team .container').prepend(data.msg);
+                    }
                 },
                 error:function(data){   
                     alert('please try later');
@@ -262,7 +288,10 @@
             }
         });
         
-        $(".units-modal-op").on('click', function() {
+        
+
+        // Modals
+        $(".units-modal-op#unit_{{$item->id}}").on('click', function() {
             $(".custom-model-main-units").addClass('model-open');
         }); 
         $(".close-btn, .bg-overlay, .closebut").click(function(){

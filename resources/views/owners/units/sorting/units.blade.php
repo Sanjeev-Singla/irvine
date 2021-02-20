@@ -20,6 +20,12 @@
         <li><strong>Payment Status</strong>
             <p>London is the capital</p>
         </li>
+        <li>
+            <center>
+                <strong>Delete</strong>
+                <p class="text-danger"><i unit-id='{{ $item->id }}' id="deleteUnit" class="fa fa-trash fa-2x"></i></p>
+            </center>
+        </li>
     </ul>
 @empty
     <ul>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UnitRequest;
+use Illuminate\Support\Facades\Storage;
 
 class UnitController extends Controller
 {
@@ -265,6 +266,22 @@ class UnitController extends Controller
         }
         
         return view('owners.units.sorting.units',compact('units'))->render();
+    }
+
+    public function deleteUnits(Request $request){
+        $units = \App\Models\Unit::find($request->unit_id);
+        
+        if (blank($units)) {
+            $result['status'] = false;
+            $result['msg']    = '<p class="alert alert-danger">Unit does not exists.</p>';
+        }
+        \File::delete($units->upload_image);
+        //$units->delete();
+
+        $result['status'] = true;
+        $result['msg']    = '<p class="alert alert-success">Unit deleted successfully.</p>';
+
+        return $result;
     }
     
     /**
