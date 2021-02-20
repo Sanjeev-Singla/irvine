@@ -24,7 +24,7 @@
 <section class="login-page">
     <div class="container">
         <div id="login-box">
-            <h1><b>Registration Form</b></h1>
+            <h1><b>Edit Profile</b></h1>
             <form method="POST" action="" enctype="multipart/form-data">
                 @csrf
                 <div class="left">
@@ -44,7 +44,10 @@
                     @error('password')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
-
+                    <input type="password" name="confirm_password" placeholder="Retype password" />
+                    @error('confirm_password')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="right">
                     <input type="text" value="{{ $user->last_name }}" name="last_name" placeholder="Last Name" />
@@ -60,16 +63,13 @@
                     @error('bank_statement')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
-                    <input type="password" name="confirm_password" placeholder="Retype password" />
-                    @error('confirm_password')
-                        <p class="text-danger">{{ $message }}</p>
-                    @enderror
+                    
                     <input type="text" value="{{ $user->income }}" name="income" placeholder="Yearly Income" />
                     @error('income')
                         <p class="text-danger">{{ $message }}</p>
                     @enderror
                 </div>
-                <input type="submit" id="button_signmeup" value="Sign me up"/>
+                <input type="submit" id="button_signmeup" value="Update"/>
             </form>
         </div>
     </div>

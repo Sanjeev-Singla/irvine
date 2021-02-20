@@ -29,7 +29,7 @@
 <section class="login-page tenbox-app">
     <div class="container">
         <div class="myheading">
-            <h1 class="heading">Tenant Application</h1>
+            <h1 class="heading">Edit Profile</h1>
         </div>
         <div class="agent-profile-row1 agent-profile-row11">
             <form method="POST" action="" enctype="multipart/form-data">
