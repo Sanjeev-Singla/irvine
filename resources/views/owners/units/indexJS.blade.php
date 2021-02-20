@@ -52,28 +52,33 @@
             $('input[name="bathroom"]').attr('readonly',false);
             $('input[name="square_footage"]').attr('readonly',false);
             $('input[name="rent"]').attr('readonly',false);
-
-            // $(this).attr('id','updateUnit').text('update');
-            $(this).replaceWith('<button class="edit-button" id="updateUnit">update</button>')
+            $('#editUnit').attr('hidden',true);
+            $('#updateUnit').attr('hidden',false);
         });
 
         $("#updateUnit").on('click',function(e){
-            alert('hello');
             e.preventDefault();
             var token = $(document).find('meta[name=csrf-token]').attr('content');
             var bedroom         = $('input[name="bedroom"]').val();
             var bathroom        = $('input[name="bathroom"]').val();
             var square_footage  = $('input[name="square_footage"]').val();
             var rent            = $('input[name="rent"]').val();
-            alert(rent);
+            var unit_id         = $('input[name="unit_id"]').val();
             $.ajax({
                 url:"{{ route('update-unit') }}",
                 type:'post',
-                data:{'_token':token,'bedroom':bedroom,'bathroom':bathroom,'square_footage':square_footage,'rent':rent},
-
+                data:{'_token':token,'bedroom':bedroom,'bathroom':bathroom,'square_footage':square_footage,'rent':rent,'unit_id':unit_id},
                 success:function(data){
-                    console.log(data);
-                    $('#message').text(data);
+                    setTimeout(() => {
+                        $('.alert').remove();
+                    }, 3000);
+                    $('.custom-model-wrap').prepend(data.msg);
+                    $('input[name="bedroom"]').attr('readonly',true);
+                    $('input[name="bathroom"]').attr('readonly',true);
+                    $('input[name="square_footage"]').attr('readonly',true);
+                    $('input[name="rent"]').attr('readonly',true);
+                    $('#editUnit').attr('hidden',false);
+                    $('#updateUnit').attr('hidden',true);
                 },
                 error:function(data){   
                     alert('please try later');
@@ -291,8 +296,8 @@
         
 
         // Modals
-        $(".units-modal-op#unit_{{$item->id}}").on('click', function() {
-            $(".custom-model-main-units").addClass('model-open');
+        $(".units-modal-op").on('click', function() {
+            $(this).parent().next().addClass('model-open');
         }); 
         $(".close-btn, .bg-overlay, .closebut").click(function(){
             $(".custom-model-main-units").removeClass('model-open');

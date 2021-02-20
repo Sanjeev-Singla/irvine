@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Tenant Application</title>
+    <title>Update Application</title>
     
     <!-- Favicons -->
     <link href="{{ asset('public/assets/img/favicon.png') }}" rel="icon">
@@ -26,7 +26,19 @@
             <header id="header" class="">
                 <div class="container">
                     <div class="logo">
-                        <img src="http://blount.us/irvine/public/assets/img/logo.png" />
+                        @if(\Auth::check())
+                            @if (\Auth::user()->is_owner == \Config::get('constant.owners.true'))
+                                <a href="{{ route('owner-home') }}">
+                                    <img src="{{ asset('public/assets/img/logo.png') }}">
+                                </a>
+                            @else
+                                <a href="{{ route('tenant-home') }}">
+                                    <img src="{{ asset('public/assets/img/logo.png') }}">
+                                </a>
+                            @endif
+                        @else
+                            <img src="{{ asset('public/assets/img/logo.png') }}">
+                        @endif
                     </div>
                     <div class="box-icon"></div>
                 </div>
@@ -34,12 +46,12 @@
         </div>
 
         
+        @include('flash-message')
         <div class="main-sec">
-            @include('flash-message')
             <form action="{{ route('update-application',$application['applications']->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mainform-heading">
-                    <h2>Tenant Application</h2>
+                    <h2>Update Application</h2>
                 </div>
                 <div class="mainform-area">
 

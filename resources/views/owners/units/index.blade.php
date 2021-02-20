@@ -49,7 +49,7 @@
                     @forelse ($units as $item)
                         <ul>
                             <li><img src="{{ $item->upload_image }}"></li>
-                            <li class="units-modal-op" id="unit_{{$item->id}}">
+                            <li class="units-modal-op">
                                 <h5>{{ $item->address }}</h5>
                                 <a href="#">list units</a>
                             </li>

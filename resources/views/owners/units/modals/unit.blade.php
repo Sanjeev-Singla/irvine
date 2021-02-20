@@ -20,6 +20,7 @@
                         <div class="form-group">
                             <label for="status">Status: Payment Up to Date</label>
                         </div>
+                        <input type="hidden" name="unit_id" value="{{ $item->id }}">
                         <div class="form-group">
                             <label for="bedandbath">Bedroom</label>
                             <input
@@ -93,7 +94,7 @@
                     <div class="sub-buttons-group">
                         <button class="closebut">Close</button>
                         <button class="edit-button" id="editUnit">Edit</button>
-                        <button class="edit-button" id="updateUnit" hidden></button>
+                        <button class="edit-button" id="updateUnit" hidden>Update</button>
                     </div>
                 </div>
             </div>

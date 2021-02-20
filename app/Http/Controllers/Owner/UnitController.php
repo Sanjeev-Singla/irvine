@@ -348,10 +348,26 @@ class UnitController extends Controller
     public function updateUnit(Request $request){
         $validate = \Validator::make($request->all(),UnitRequest::update_unit());
 
-        if ($validate->fail()) {
+        if ($validate->fails()) {
             return $validate->errors()->first();
         }
 
+        $unitDetails = \App\Models\Unit::find($request->unit_id);
+
+        if (blank($unitDetails)) {
+            $result['status'] = false;
+            $result['msg']  ="<p class='alert alert-danger'>Invalid Unit.</p>";
+        }else{
+            $unitDetails->bedroom = $request->bedroom;
+            $unitDetails->bathroom= $request->bathroom;
+            $unitDetails->square_footage = $request->square_footage;
+            $unitDetails->rent = $request->rent;
+            $unitDetails->save(); 
+            $result['status'] = true;
+            $result['msg']  ="<p class='alert alert-success'>Unit updated successfully.</p>";
+        }
+
+        return $result;
         
     } 
     

@@ -280,7 +280,7 @@ class OwnerController extends Controller
 
         \DB::table('vehicle_info')->where('application_id',$id)->update($inputVehicle);
 
-        return redirect()->back()->with('success','Application updated Successfully.');
+        return redirect()->route('owner-home')->with('success','Application updated Successfully.');
     }
     
     /**
