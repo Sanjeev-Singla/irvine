@@ -18,7 +18,12 @@ class TenantController extends Controller
         $maintenanceRequests = \App\Models\MaintenanceRequest::where('users_id',\Auth::user()->id)
                                                                 ->select('status','created_at')
                                                                 ->get();
-        return view('tenant.index',compact('maintenanceRequests'));
+        
+        $userDetails = \App\Models\Application::where('email',\Auth::User()->email)->first();
+
+        $referTenant = \App\Models\ReferTenant::where('tenant_email',\Auth::User()->email)->first();
+
+        return view('tenant.index',compact('maintenanceRequests','userDetails','referTenant'));
     }
     
     /**

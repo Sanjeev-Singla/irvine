@@ -93,26 +93,26 @@
                             <input type="file" id="financials-file" value="{{ $user->financials }}" name="financials">
                         </li>
                         <li>
-                            <label>SSN:</label>
+                            {{-- <label>SSN:</label> --}}
                             <input type="text" name="ssn" value="{{ $user->ssn }}" placeholder="SSN:">
                         </li>
 
                         <li>
-                            <label>Current Password:</label>
+                            {{-- <label>Current Password:</label> --}}
                             <input type="password" name="current_password" placeholder="Password">
                         </li>
                         @error('current_password')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                         <li>
-                            <label>New Password:</label>
+                            {{-- <label>New Password:</label> --}}
                             <input type="password" name="password" placeholder="Password">
                         </li>
                         @error('password')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                         <li>
-                            <label>Re-Enter Password:</label>
+                            {{-- <label>Re-Enter Password:</label> --}}
                             <input type="password" name="confirm_password" placeholder="Re-Enter Password">
                         </li>
                         @error('confirm_password')

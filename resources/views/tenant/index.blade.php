@@ -252,16 +252,14 @@
                         <ul>
                             <li>
                                 <h3>
-                                    175 W Cottonwood Ct.
-                                    <br>
-                                    Eagle, ID 83616
+                                    {{ $userDetails->applicationTenants->first_name.' '.$userDetails->applicationTenants->last_name }}                                    
                                 </h3>
                             </li>
                         </ul>
                     </form>
                 </div>
                 <div class="tenbox11 imgtenbox12">
-                    <img src="assets/img/about.jpg" alt="img">
+                    <img height="100px" width="100px" src="{{ asset('public/uploads/images/default/default_image.png') }}" alt="profile-img">
                 </div>
             </div>
             <div class="agent-profile-row agent-profile-row3 ntpsection">
@@ -269,7 +267,7 @@
                     <ul class="pay-amount">
                         <li>
                             <label>Payment Amount:</label>
-                            <span>$5,12,4997</span>
+                            <span>${{ $referTenant->units->rent }}</span>
                         </li>
                         <li>
                             <label>Due Date:</label>
@@ -299,7 +297,7 @@
                         </li>
                         <li>
                             <label>Unit sqft:</label>
-                            <span>1462</span>
+                            <span>{{ $referTenant->units->square_footage }}</span>
                         </li>
                     </ul>
                 </div>
@@ -307,7 +305,7 @@
                     <ul class="pay-amount">
                         <li>
                             <label>Lease Start:</label>
-                            <span>1/1/2020</span>
+                            <span>{{ date_format(date_create($userDetails->updated_at),"d/m/Y") }}</span>
                         </li>
                         <li>
                             <label>Lease Doc:</label>
@@ -323,22 +321,30 @@
                 <div class="tenbox11 tenbox14">
                     <h4>Submit Maintenance Requests</h4>
                     <ul class="pay-amount">
-                        <li>
-                            <label>Lease End:</label>
-                            <span>1/1/2020</span>
-                        </li>
-                        <li>
-                            <label>Unit sqft:</label>
-                            <span>1462</span>
-                        </li>
-                        <li>
-                            <label>Lease End:</label>
-                            <span>1/1/2020</span>
-                        </li>
-                        <li>
-                            <label>Unit sqft:</label>
-                            <span>1462</span>
-                        </li>
+                        @php
+                            $i = 0;
+                        @endphp
+                        @forelse ($maintenanceRequests as $maintenanceRequest)
+                            @php
+                                $i++;
+                            @endphp
+                            @if ($i>2)
+                                break;
+                            @endif
+                            <li>
+                                
+                                <label>Date:</label>
+                                <span>{{ date_format(date_create($maintenanceRequest->created_at),"d/m/Y") }}</span>
+                            </li>
+                            <li>
+                                <label>Status:</label>
+                                <span>{{ $maintenanceRequest->status }}</span>
+                            </li>
+                        @empty
+                            <li>
+                                <td colspan="2">No Requests Available</td>
+                            </li>
+                        @endforelse
                     </ul>
                     <p>
                         <a href="#" id="myBtn2">See All</a>

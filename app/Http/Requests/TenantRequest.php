@@ -29,7 +29,7 @@ class TenantRequest extends FormRequest
             'profile_image'     => 'required|image|mimes:jpg,png,jpeg|max:2048',
             //'valid_id'          => 'required|image|mimes:jpg,png,jpeg|max:2048',
             'financials'        => 'required|image|mimes:jpg,png,jpeg|max:2048',
-            'email'             => 'required|email|unique:users,email',
+            'email'             => 'required|email|unique:users,email|exists:application,email',
             'phone'             => 'required|max:9999999999',
             'dob'               => 'required|date',
             'password'          => 'required|min:6',

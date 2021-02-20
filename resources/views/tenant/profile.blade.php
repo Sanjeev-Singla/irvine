@@ -37,7 +37,7 @@
 
                 </div>
                 <div class="tenbox11 imgtenbox12">
-                    <img src="{{ $userDetails->profile_image }}" width="100px;" width="100px" alt="profile-img">
+                    <img height="100px" width="100px" src="{{ asset('public/uploads/images/default/default_image.png') }}" alt="profile-img">
                 </div>
             </div>
             <div class="newagent-profile-row1 agent-profile-row1 agent-profile-row11">
