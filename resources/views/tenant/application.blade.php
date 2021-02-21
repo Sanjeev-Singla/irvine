@@ -91,7 +91,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="phone">Phone :</label>
-                                            <input type="number" value="{{ old('phone[]') }}" class="form-control" name="phone[]" required/>
+                                            <input type="text" maxlength="12" value="{{ old('phone[]') }}" class="form-control" id="phone-number-field" name="phone[]" required/>
                                         </div>
                                         @error('phone')
                                             <p class="text-danger">{{ $message }}</p>
