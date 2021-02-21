@@ -5,7 +5,7 @@ body {
   font-family: "Raleway", sans-serif;
 }
 
-input[name='available_time[]']{
+input[type='datetime-local[]']{
   display:block;
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
