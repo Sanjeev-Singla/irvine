@@ -7,7 +7,7 @@ body {
 }
 .custom-model-main-units,
 .custom-model-main-tenants,
-.custom-model-main-new-application {
+.custom-model-main-new-application, .maintenance-form-open {
   text-align: center;
   overflow: hidden;
   position: fixed;
