@@ -254,6 +254,9 @@
         // delete units
         $("i#deleteUnit").on('click',function(e){
             e.preventDefault();
+            if (!confirm('Are you sure you want to delete?')) {
+                return;
+            }
             var unit_id = $(this).attr('unit-id');
             var token = $(document).find('meta[name=csrf-token]').attr('content');
             var $this = $(this);

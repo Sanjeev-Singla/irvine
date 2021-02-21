@@ -137,7 +137,7 @@
                         <div class="col-md-6">
                             <div class="form-group text-left">
                                 <label>Square footage</label>
-                                <input class="form-control" value="{{ old('square_footage') }}" name="square_footage" type="text">
+                                <input class="form-control" value="{{ old('square_footage') }}" name="square_footage" type="number">
                             </div>
                             @error('square_footage')
                                 <p class="text-danger pull-left">{{ $message }}</p>
@@ -146,7 +146,7 @@
                         <div class="col-md-6">
                             <div class="form-group text-left">
                                 <label>Year Built</label>
-                                <input class="form-control" value="{{ old('year_built') }}" name="year_built" type="text">
+                                <input class="form-control" max="9999" value="{{ old('year_built') }}" name="year_built" type="number">
                             </div>
                             @error('year_built')
                                 <p class="text-danger pull-left">{{ $message }}</p>
@@ -158,7 +158,7 @@
                         <div class="col-md-6">
                             <div class="form-group text-left">
                                 <label>Year Remodeled</label>
-                                <input class="form-control" value="{{ old('year_remodeled') }}" name="year_remodeled" type="text">
+                                <input class="form-control" max="9999" value="{{ old('year_remodeled') }}" name="year_remodeled" type="number">
                             </div>
                             @error('year_remodeled')
                                 <p class="text-danger pull-left">{{ $message }}</p>

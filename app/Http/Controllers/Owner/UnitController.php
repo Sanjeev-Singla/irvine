@@ -267,7 +267,13 @@ class UnitController extends Controller
         
         return view('owners.units.sorting.units',compact('units'))->render();
     }
-
+    
+    /**
+     * deleteUnits
+     *
+     * @param  mixed $request
+     * @return void
+     */
     public function deleteUnits(Request $request){
         $units = \App\Models\Unit::find($request->unit_id);
         
@@ -276,7 +282,7 @@ class UnitController extends Controller
             $result['msg']    = '<p class="alert alert-danger">Unit does not exists.</p>';
         }
         \File::delete($units->upload_image);
-        $units->delete();
+        //$units->delete();
 
         $result['status'] = true;
         $result['msg']    = '<p class="alert alert-success">Unit deleted successfully.</p>';

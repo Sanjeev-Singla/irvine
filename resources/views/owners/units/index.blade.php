@@ -25,7 +25,7 @@
                 </div>
                 <div class="section-right">
                     <div class="icon-box">
-                        <span><a href="#"><i class="fa fa-minus-circle" aria-hidden="true"></i></a></span>
+                        {{-- <span><a href="#"><i class="fa fa-minus-circle" aria-hidden="true"></i></a></span> --}}
                         <a href="{{ route('add-unit') }}"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
                     </div>
                     <select name="unit_sorting" class="input-select" autocomplete="off">
@@ -70,7 +70,6 @@
                             </li>
                             <li>
                                 <center>
-                                    <strong>Delete</strong>
                                     <p><a href="#" class="text-danger"><i unit-id='{{ $item->id }}' id="deleteUnit" class="fa fa-trash fa-2x"></i></a></p>
                                 </center>
                             </li>

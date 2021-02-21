@@ -399,7 +399,7 @@ position: absolute;
 .login-row .agent-profile-left ul li input[type="password"]{
     border: 1px solid #000;
     border-radius: 50px;
-    padding: 0 20px;
+    padding: 0 25px;
     background-color: transparent;
 }
 
