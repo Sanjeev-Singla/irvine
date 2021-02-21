@@ -16,8 +16,7 @@
 </script>
 <script>
     $(document).on('click', ".maintenance-form-open", function() {
-        $(".custom-model-main-maintenace").addClass('model-open');
-        //alert("class added");        
+        $(this).parent().next().addClass('model-open');
     });
     $(document).on('click', ".close-btn, .bg-overlay", function() {
         $(".custom-model-main-maintenace").removeClass('model-open');

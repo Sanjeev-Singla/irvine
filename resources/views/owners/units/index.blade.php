@@ -165,15 +165,6 @@
                         <option value="2">Resolved</option>
                         <option value="3">Cancelled</option>
                     </select>
-                    {{-- <select name="" class="input-select" autocomplete="off">
-                        <option value="1" selected="true">All Properties</option>
-                        <option value="2">Business Opportunity</option>
-                        <option value="3">Commercial Lease</option>
-                        <option value="4">Commercial Sale</option>
-                        <option value="5">Land</option>
-                        <option value="6">Residential Income</option>
-                        <option value="7">Residential Lease</option>
-                    </select> --}}
                 </div>
                 <div id="maintenanceRequest">
                     @forelse ($maintenanceRequests as $maintenanceRequest)
