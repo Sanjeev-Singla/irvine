@@ -67,4 +67,6 @@
 
 </section>
 
+@push('scripts')
+
 @endsection

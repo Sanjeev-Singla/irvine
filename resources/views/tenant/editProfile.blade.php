@@ -94,7 +94,8 @@
                         </li>
                         <li>
                             {{-- <label>SSN:</label> --}}
-                            <input type="text" name="ssn" value="{{ $user->ssn }}" placeholder="SSN:">
+                            <input type="password" id="validateSSN" onblur="validateSSNs()" name="ssn" value="{{ $user->ssn }}" placeholder="SSN:">
+                            <i class="fa fa-eye btn btn-secondary" id="watchSSN"></i>
                         </li>
 
                         <li>
@@ -131,5 +132,31 @@
 
     </div>
 </section>
+
+
+@push('scripts')
+
+<script>
+    function validateSSNs(){
+        let ssn = $('#validateSSN').val();
+        let regexp = /^([1-9])(?!\1{2}-\1{2}-\1{4})[1-9]{2}-[1-9]{2}-[1-9]{4}/;
+        if (!regexp.test(ssn)) {
+            alert('please enter valid ssn number');
+        }
+    }
+
+    $(document).ready(function(){
+        $('#watchSSN').on('click',function(){
+            var getType = $('#validateSSN').attr('type');
+            if (getType == 'text') {
+                $('#validateSSN').attr('type','password');
+            }else{
+                $('#validateSSN').attr('type','text');
+            }
+        });
+    });
+</script>
+    
+@endpush
 
 @endsection        
