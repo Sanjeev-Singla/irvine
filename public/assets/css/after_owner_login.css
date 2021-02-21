@@ -3,11 +3,10 @@
 
 body {
   font-family: "Raleway", sans-serif;
-  -webkit-transform:scale(1.1);
 }
 .custom-model-main-units,
 .custom-model-main-tenants,
-.custom-model-main-new-application, .maintenance-form-open {
+.custom-model-main-new-application {
   text-align: center;
   overflow: hidden;
   position: fixed;
