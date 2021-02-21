@@ -277,5 +277,6 @@
 
 @push('scripts')
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css"></script>
     @include('owners.units.indexJS')
 @endpush
