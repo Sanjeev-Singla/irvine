@@ -1,5 +1,12 @@
 <script>
-
+    function validateSSNs(){
+        let ssn = $('#validateSSN').val();
+        let regexp = /^([1-9])(?!\1{2}-\1{2}-\1{4})[1-9]{2}-[1-9]{2}-[1-9]{4}/;
+        if (!regexp.test(ssn)) {
+            alert('please enter valid ssn number');
+        }
+    }
+    
     $(document).ready(function(e){
         $('#tenantDetailsPlus').on('click',function(e){
             e.preventDefault();
@@ -12,7 +19,7 @@
             $('div.tenantDetails input[name="valid_id[]"]:last').val('');
         });
 
-        $('#phone-number-field').keydown(function (e) {
+        $('#phone-number-field,#phone-number-field1,#phone-number-field2,#phone-number-field3,#phone-number-field4,#phone-number-field5,#phone-number-field6').keydown(function (e) {
              var key = e.charCode || e.keyCode || 0;
              $text = $(this); 
              if (key !== 8 && key !== 9) {
@@ -34,6 +41,16 @@
                 $('div.tenantDetails:last').remove('div.tenantDetails:last');
             }
         });
+        function validateSSNs(){
+            alert('jkdafb');
+        //$("#validateSSN").on('blur',function(){
+            let ssn = $('#validateSSN').val();
+            let regexp = /^([1-9])(?!\1{2}-\1{2}-\1{4})[1-9]{2}-[1-9]{2}-[1-9]{4}/;
+            if (!regexp.test(ssn)) {
+                alert('please enter valid ssn number');
+            }
+        }
+        //});
         
         $('#petDetailsPlus').on('click',function(e){
             e.preventDefault();

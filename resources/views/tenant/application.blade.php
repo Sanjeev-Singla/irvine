@@ -91,7 +91,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="phone">Phone :</label>
-                                            <input type="text" maxlength="12" value="{{ old('phone[]') }}" class="form-control" id="phone-number-field" name="phone[]" required/>
+                                            <input type="text" onkeydown="validPhone(event)" maxlength="12" placeholder="xxx-xxx-xxxx" value="{{ old('phone[]') }}" class="form-control" id="phone-number-field1" name="phone[]" required/>
                                         </div>
                                         @error('phone')
                                             <p class="text-danger">{{ $message }}</p>
@@ -102,7 +102,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="ssn">SSN :</label>
-                                            <input type="text" value="{{ old('ssn[]') }}" class="form-control" id="ssn" placeholder="" name="ssn[]" required/>
+                                            <input onblur="validateSSNs()" type="password" value="{{ old('ssn[]') }}" class="form-control" id="validateSSN" placeholder="xxx-xxx-xxxx" name="ssn[]" required/>
                                         </div>
                                         @error('ssn')
                                             <p class="text-danger">{{ $message }}</p>
@@ -209,7 +209,7 @@
                             @enderror
                             <div class="form-group">
                                 <label for="managerphone">Manager Phone :</label>
-                                <input type="number" name="manager_phone" value="{{ old('manager_phone') }}" class="form-control" id="managerphone" placeholder="" required/>
+                                <input type="text" name="manager_phone" maxlength="12" value="{{ old('manager_phone') }}" class="form-control" id="managerphone" placeholder="" required/>
                             </div>
                             @error('manager_phone')
                                 <p class="text-danger">{{ $message }}</p>
@@ -351,7 +351,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="supervisorphone">Supervisor Phone :</label>
-                                <input type="number" value="{{ old('supervisor_phone') }}" class="form-control" id="supervisorphone" placeholder=""
+                                <input type="text" maxlength="12" id="phone-number-field3" value="{{ old('supervisor_phone') }}" class="form-control" id="supervisorphone" placeholder="xxx-xxx-xxxx"
                                     name="supervisor_phone" />
                             </div>
                             @error('supervisor_phone')
@@ -404,7 +404,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="refphone1">Reference Phone :</label>
-                                <input type="number" class="form-control" name="reference_phone[]" value="{{ old('reference_phone[]') }}" maxlength="100" required/>
+                                <input maxlength="12" placeholder="xxx-xxx-xxxx" id="phone-number-field4" type="text" class="form-control" name="reference_phone[]" value="{{ old('reference_phone[]') }}" maxlength="100" required/>
                             </div>
                             @error('reference_phone')
                                 <p class="text-danger">{{ $message }}</p>
@@ -421,7 +421,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="refphone2">Reference Phone :</label>
-                                <input type="number" class="form-control" name="reference_phone[]" maxlength="100" required/>
+                                <input  maxlength="12" placeholder="xxx-xxx-xxxx" id="phone-number-field5" type="text" class="form-control" name="reference_phone[]" maxlength="100" required/>
                             </div>
                         </div>
                     </div>
@@ -435,7 +435,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="refphone3">Reference Phone :</label>
-                                <input type="number" class="form-control" name="reference_phone[]" maxlength="100" required/>
+                                <input maxlength="12" placeholder="xxx-xxx-xxxx" id="phone-number-field6" type="text" class="form-control" name="reference_phone[]" maxlength="100" required/>
                             </div>
                         </div>
                     </div>
@@ -468,7 +468,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="emergencyphone">Emergency Contact Phone :</label>
-                                <input type="number" class="form-control" value="{{ old('emergency_phone[]') }}" maxlength="100" name="emergency_phone[]" required/>
+                                <input type="text" placeholder="xxx-xxx-xxxx" maxlength="12" id="phone-number-field" class="form-control" value="{{ old('emergency_phone[]') }}" maxlength="100" name="emergency_phone[]" required/>
                             </div>
                             @error('emergency_phone')
                                 <p class="text-danger">{{ $message }}</p>
