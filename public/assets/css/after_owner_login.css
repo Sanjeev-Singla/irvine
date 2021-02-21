@@ -4,6 +4,14 @@
 body {
   font-family: "Raleway", sans-serif;
 }
+
+input[name='datetime-local[]']{
+  display:block;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  min-height: 1.2em;
+}
+
 .custom-model-main-units,
 .custom-model-main-tenants,
 .custom-model-main-new-application {

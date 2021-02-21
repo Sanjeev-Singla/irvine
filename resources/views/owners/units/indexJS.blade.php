@@ -13,10 +13,6 @@
         evt.currentTarget.className += " active";
     }
 
-    $(document).ready(function($) {
-        $("input[name='available_time[]']").datepicker();
-    });
-
 </script>
 <script>
     $(document).on('click', ".maintenance-form-open", function() {
