@@ -17,7 +17,7 @@ class UnitController extends Controller
      */
     public function index(){
         # Getting top 3 units 
-        $units = \App\Models\Unit::where(['users_id'=>\Auth::user()->id])
+        $units = \App\Models\Unit::where(['users_id'=>\Auth::user()->id,"status"=>\Config::get('constant.units.status.active')])
                                     ->take(3)
                                     ->orderBy('created_at','DESC')
                                     ->get();
@@ -282,8 +282,8 @@ class UnitController extends Controller
             $result['msg']    = '<p class="alert alert-danger">Unit does not exists.</p>';
         }
         \File::delete($units->upload_image);
-        //$units->delete();
-
+        $units->status = \Config::get('constant.units.status.inactive');
+        $units->save();
         $result['status'] = true;
         $result['msg']    = '<p class="alert alert-success">Unit deleted successfully.</p>';
         

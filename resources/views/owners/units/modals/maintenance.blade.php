@@ -103,25 +103,24 @@
                                         value="{{ $item }}"
                                         readonly
                                         required
-                                    >
-                                    <i class="fas fa-plus" id="availableTimePlus"></i>
-                                    <i class="fas fa-minus" id="availableTimeMinus"></i>
+                                    ><br><br>
                                 </div>
                             @empty
                                 <div class="multi-date availableTime">
                                     <input
                                         type="datetime-local"
                                         class="form-control"
-                                        placeholder="xxx-xxx-xxxx"
                                         min="2021-02-13"
                                         name="available_time[]"
                                         readonly
                                         required
-                                    >
-                                    <i class="fas fa-plus" id="availableTimePlus"></i>
-                                    <i class="fas fa-minus" id="availableTimeMinus"></i>
+                                    ><br><br>
                                 </div>
                             @endforelse
+                            <div class="multi-date" style="margin-left: 40%;margin-top:1%">
+                                <i class="fas fa-plus" id="availableTimePlus"></i>
+                                <i class="fas fa-minus text-danger" id="availableTimeMinus"></i>
+                            </div>
                         </div>
                         <div class="form-group submit">
                             <button id="updateRequest" class="update-button">Update</button>

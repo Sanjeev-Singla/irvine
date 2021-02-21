@@ -32,7 +32,7 @@
             $('input[name="appartment_number"]').attr('readonly',false);
             $('select[name="priority_level"]').attr('readonly',false);
             $('input[name="issue"]').attr('readonly',false);
-            $('input[name="available_time"]').attr('readonly',false);
+            $('input[name="available_time[]"]').attr('readonly',false);
         });
 
         $("#editTenant").on('click',function(e){

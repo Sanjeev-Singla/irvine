@@ -57,9 +57,12 @@
                                         min="2021-02-13" 
                                         name="available_time[]" 
                                         required
-                                    />
+                                    /><br><br>
+                                    
+                                </div>
+                                <div class="multi-date" style="margin-left: 40%;margin-top:1%">
                                     <i class="fas fa-plus" id="availableTimePlus"></i>
-                                    <i class="fas fa-minus" id="availableTimeMinus"></i>
+                                    <i class="fas fa-minus text-danger" id="availableTimeMinus"></i>
                                 </div>
                             </div>
                             <div class="form-group submit">
